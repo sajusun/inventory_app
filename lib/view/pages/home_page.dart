@@ -32,7 +32,14 @@ class _HomePageState extends State<HomePage> {
               OutlinedButton(onPressed: () {
                 AppDrawerController.gotoPage(context, Category);
                 }, child: Text("Product Catagory")),
-              OutlinedButton(onPressed: () {}, child: Text("Product Model"))
+              SizedBox(
+                height: 20,
+              ),
+              OutlinedButton(onPressed: () {}, child: Text("Product Model")),
+              SizedBox(
+                height: 20,
+              ),
+              OutlinedButton(onPressed: () {}, child: Text("Add Product"))
             ],
           ),
         ),
