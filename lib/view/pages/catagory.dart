@@ -8,10 +8,52 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
+  TextEditingController txtController = TextEditingController();
+  bool addTitle = false;
+  Widget textWidget() {
+    if (addTitle) {
+      return TextFormField(
+        controller: txtController,
+      );
+    } else {
+      return const Text("Category list");
+    }
+  }
+
+  Widget iconWidget() {
+    if (addTitle) {
+      return Icon(Icons.save);
+    } else {
+      return Icon(Icons.add);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Center(child: Text("hello"),),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: textWidget(),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  if(addTitle){
+                    print("save me");
+                  }
+                  addTitle = !addTitle;
+
+                  setState(() {});
+                },
+                icon: iconWidget())
+          ],
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Container(
+                child: Text("All category"),
+              ),
+            ],
+          ),
+        ));
   }
 }

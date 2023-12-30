@@ -30,12 +30,14 @@ class _HomePageState extends State<HomePage> {
                 child: Center(child: Text("Drawer Header"),),
               ),
               OutlinedButton(onPressed: () {
-                AppDrawerController.gotoPage(context, Category);
+               Navigator.push(context, MaterialPageRoute(builder: (context)=>Category()));
                 }, child: Text("Product Catagory")),
               SizedBox(
                 height: 20,
               ),
-              OutlinedButton(onPressed: () {}, child: Text("Product Model")),
+              OutlinedButton(onPressed: () {
+                AppDrawerController.gotoPage(context, Category);
+              }, child: Text("Product Model")),
               SizedBox(
                 height: 20,
               ),
