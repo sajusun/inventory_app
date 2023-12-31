@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventoryapp/model/firestore/category_model.dart';
 
 class Category extends StatefulWidget {
   const Category({super.key});
@@ -38,6 +39,7 @@ class _CategoryState extends State<Category> {
                 onPressed: () {
                   if(addTitle){
                     print("save me");
+                    CategoryModel().addCategory({"name":txtController.text});
                   }
                   addTitle = !addTitle;
 
@@ -52,6 +54,7 @@ class _CategoryState extends State<Category> {
               Container(
                 child: Text("All category"),
               ),
+              OutlinedButton(onPressed: (){CategoryModel().getAllCategory();}, child: Text("get data"))
             ],
           ),
         ));
