@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// custom model
 class CatModel{
   late String id;
   late String name;
-
   CatModel(this.id, this.name);
 }
 
@@ -11,33 +11,38 @@ class CatModel{
 class CategoryModel {
   var db = FirebaseFirestore.instance;
   late List<CatModel>? catList;
+String collectionPath = "/inventory/category/categoryList";
 
+  // add category method
   void addCategory(dynamic data){
-    // Add a new document with a generated id.
-    // final data = {"name": "Tokyo",};
-    // db.collection("inventory").doc("category").collection("categoryList").add(data).then((documentSnapshot) =>
-    //     print("Added Data with ID: ${documentSnapshot.id}"));
-
-    db.collection("/inventory/category/categoryList").add(data).then((documentSnapshot) =>
+    db.collection(collectionPath).add(data).then((documentSnapshot) =>
     print("Added Data with ID: ${documentSnapshot.id}"));
   }
-  void delete(String id){
-    db.collection("/inventory/category/categoryList").doc(id).delete().then(
-          (doc) => print("Document deleted"),
-      onError: (e) => print("Error updating document $e"),
+  // delete item method
+  bool delete(String id){
+    db.collection(collectionPath).doc(id).delete().then(
+          (doc){ return true;},
+      onError: (e) {return false;},
     );
+    return false;
+  }
+  // update item method
+  void update(String docID, dynamic value){
+    final docIdRef = db.collection(collectionPath).doc(docID);
+    docIdRef.update({"name": value}).then(
+            (value) => print("DocumentSnapshot successfully updated!"),
+        onError: (e) => print("Error updating document $e"));
   }
 
   // retrieve category data from firebase store
   Future<List<CatModel>> getAllCategory() async{
     List<CatModel> cList=[];
-    await db.collection("/inventory/category/categoryList").get().then(
+    await db.collection(collectionPath).get().then(
           (querySnapshot) {
         print("Successfully completed");
         for (var docSnapshot in querySnapshot.docs) {
-          print('${docSnapshot.id} => ${docSnapshot.data() as Map<String, dynamic>}');
-          // catList.add({"id":docSnapshot.id,"name":docSnapshot.data()});
-          cList.add(CatModel(docSnapshot.id, docSnapshot.data().toString()));
+          print('${docSnapshot.id} => ${docSnapshot.data()}');
+          cList.add(CatModel(docSnapshot.id, docSnapshot.data()['name']));
         }
       },
       onError: (e) => print("Error completing: $e"),

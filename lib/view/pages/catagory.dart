@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventoryapp/model/firestore/category_model.dart';
+import 'package:get/get.dart';
 
 class Category extends StatefulWidget {
   const Category({super.key});
@@ -10,6 +11,8 @@ class Category extends StatefulWidget {
 
 class _CategoryState extends State<Category> {
   TextEditingController txtController = TextEditingController();
+  TextEditingController txtEditController = TextEditingController();
+
   bool addTitle = false;
  // List<CatModel>? data=CategoryModel().getAllCategory() as List<CatModel>?;
   Widget textWidget() {
@@ -57,13 +60,26 @@ class _CategoryState extends State<Category> {
               child: ListView.builder(
                 itemCount: snap.data!.length,
                   itemBuilder: (context,  index){
-                return  ListTile(title: Text(snap.data![index].name),
+                return  ListTile(
+                  leading: IconButton(onPressed: (){
+                    Get.defaultDialog(
+                      title: "Edit",
+                      content: TextFormField(
+                        controller: txtEditController,
+                      ),
+                      confirm:  OutlinedButton(onPressed: (){
+                        CategoryModel().update(snap.data![index].id, txtEditController.text);
+                      }, child: Text("Update"))
+
+                    );
+                    setState(() {});
+                  }, icon: Icon(Icons.edit_note)),
+                  title: Text(snap.data![index].name),
                   trailing: IconButton(onPressed: (){
                     CategoryModel().delete(snap.data![index].id);
-                    setState(() {
-
-                    });
-                  }, icon: Icon(Icons.delete)),);
+                    setState(() {});
+                  }, icon: Icon(Icons.delete)),
+                );
               }),
             );
         }),
