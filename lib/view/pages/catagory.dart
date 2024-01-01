@@ -11,6 +11,7 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   TextEditingController txtController = TextEditingController();
   bool addTitle = false;
+ // List<CatModel>? data=CategoryModel().getAllCategory() as List<CatModel>?;
   Widget textWidget() {
     if (addTitle) {
       return TextFormField(
@@ -37,9 +38,11 @@ class _CategoryState extends State<Category> {
           actions: [
             IconButton(
                 onPressed: () {
-                  if(addTitle){
+                  if(addTitle && txtController.text.isNotEmpty){
                     print("save me");
                     CategoryModel().addCategory({"name":txtController.text});
+                  }else{
+                    print("empty data");
                   }
                   addTitle = !addTitle;
 
@@ -48,15 +51,22 @@ class _CategoryState extends State<Category> {
                 icon: iconWidget())
           ],
         ),
-        body: Container(
-          child: Column(
-            children: [
-              Container(
-                child: Text("All category"),
-              ),
-              OutlinedButton(onPressed: (){CategoryModel().getAllCategory();}, child: Text("get data"))
-            ],
-          ),
+        body: SizedBox(
+          child: FutureBuilder(future: CategoryModel().getAllCategory(), builder: (ctx,snap){
+            return Container(
+              child: ListView.builder(
+                itemCount: snap.data!.length,
+                  itemBuilder: (context,  index){
+                return  ListTile(title: Text(snap.data![index].name),
+                  trailing: IconButton(onPressed: (){
+                    CategoryModel().delete(snap.data![index].id);
+                    setState(() {
+
+                    });
+                  }, icon: Icon(Icons.delete)),);
+              }),
+            );
+        }),
         ));
   }
 }
