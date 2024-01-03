@@ -66,12 +66,17 @@ class _CategoryState extends State<Category> {
                 leading: IconButton(onPressed: (){
                   Get.defaultDialog(
                     title: "Edit",
-                    content: TextFormField(
-                      controller: txtEditController,
+                    content: Column(
+                      children: [
+                        TextFormField(
+                          controller: txtEditController,
+                        ),
+                        Obx(() => Text("${CategoryCtrl.controller.updateStatus}"))
+                      ],
                     ),
                     confirm:  OutlinedButton(onPressed: (){
-                      CategoryModel().update(snap.data![index].id, txtEditController.text);
-                    }, child: Text("Update"))
+                      CategoryCtrl.updateCategory(snap.data![index].id, txtEditController.text);
+                    }, child: const Text("Update"))
 
                   );
                   setState(() {});

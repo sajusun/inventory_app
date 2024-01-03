@@ -10,12 +10,12 @@ class CatModel {
 
 class CategoryModel {
   var db = FirebaseFirestore.instance;
-  late List<CatModel>? catList;
+  List<CatModel> catList = [];
   String collectionPath = "/inventory/category/categoryList";
 
   // add category method
   Future<bool> add(dynamic data) async {
-   await db.collection(collectionPath).add(data).then((documentSnapshot) {
+    await db.collection(collectionPath).add(data).then((documentSnapshot) {
       return true;
     }, onError: (e) {
       return false;
@@ -34,16 +34,19 @@ class CategoryModel {
         result = false;
       },
     );
-    print(result);
     return result;
   }
 
   // update item method
-  void update(String docID, dynamic value) {
+  Future<bool> update(String docID, dynamic value) async {
+    bool result = false;
     final docIdRef = db.collection(collectionPath).doc(docID);
-    docIdRef.update({"name": value}).then(
-        (value) => print("DocumentSnapshot successfully updated!"),
-        onError: (e) => print("Error updating document $e"));
+    await docIdRef.update({"name": value}).then((value) {
+      result = true;
+    }, onError: (e) {
+      result = false;
+    });
+    return result;
   }
 
   // retrieve category data from firebase store
@@ -51,14 +54,23 @@ class CategoryModel {
     List<CatModel> cList = [];
     await db.collection(collectionPath).get().then(
       (querySnapshot) {
-        print("Successfully completed");
         for (var docSnapshot in querySnapshot.docs) {
-          print('${docSnapshot.id} => ${docSnapshot.data()}');
           cList.add(CatModel(docSnapshot.id, docSnapshot.data()['name']));
         }
       },
       onError: (e) => print("Error completing: $e"),
     );
     return cList;
+  }
+
+  // retrieve category data from firebase store
+  Future<List<CatModel>> getAllData() async {
+    List<CatModel> docList = [];
+    await db.collection(collectionPath).get().then((querySnapshot) {
+      for (var docSnapshot in querySnapshot.docs) {
+        docList.add(CatModel(docSnapshot.id, docSnapshot.data()['name']));
+      }
+    });
+    return docList;
   }
 }
