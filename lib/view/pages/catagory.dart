@@ -14,6 +14,7 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   TextEditingController txtController = TextEditingController();
   TextEditingController txtEditController = TextEditingController();
+  var abc = CategoryCtrl.getAllCategory().obs;
 
   final addTitle = false.obs;
   Widget textWidget() {
@@ -33,9 +34,16 @@ class _CategoryState extends State<Category> {
       return Icon(Icons.add);
     }
   }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    CategoryCtrl.getAllCat();
+  }
 
   @override
   Widget build(BuildContext context) {
+    CategoryCtrl.getAllCat();
     return Scaffold(
         appBar: AppBar(
           title: Obx(()=>textWidget()),
@@ -49,62 +57,70 @@ class _CategoryState extends State<Category> {
                     print("empty data");
                   }
                   addTitle.value = !addTitle.value;
-
-                  setState(() {});
+                  CategoryCtrl.uiUpdate();
                 },
                 icon: iconWidget()))
           ],
         ),
         body: SizedBox(
-          child: FutureBuilder(future: CategoryModel().getAll(), builder: (ctx,snap){
-            if (snap.data == null) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            };
-            return ListView.builder(
-              itemCount: snap.data!.length,
-                itemBuilder: (context,  index){
-              return  ListTile(
-                leading: IconButton(onPressed: (){
-                  CategoryCtrl.controller.mgsStatus.value="Changing data by pressing Update.";
-                  txtEditController.text=snap.data![index].name;
-                  Get.defaultDialog(
-                    title: "Edit",
-                    content: Column(
-                      children: [
-                        TextFormField(
-                          controller: txtEditController,
-                          autofocus: true,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Obx(() => Text("${CategoryCtrl.controller.mgsStatus}"))
-                      ],
-                    ),
-                    confirm:  OutlinedButton(onPressed: (){
-                      CategoryCtrl.updateCategory(snap.data![index].id, txtEditController.text);
-                      Get.appUpdate();
-                    }, child: const Text("Update")),
-                  );  // end getX dialog box
-
-                }, icon: Icon(Icons.edit_note)),
-                title: Text(snap.data![index].name),
-                trailing: IconButton(onPressed: (){
-                  CategoryCtrl.controller.mgsStatus.value="Confirm To Delete Data!";
-                  Get.defaultDialog(
-                    title: "Alert!",
-                    content: Obx(()=>Text("${CategoryCtrl.controller.mgsStatus}")),
-                    confirm: ElevatedButton(onPressed: () async {
-                      await CategoryCtrl.deleteCategory(snap.data![index].id);
-                      Get.appUpdate();
-                    }, child: Text("Delete"))
-                  );
-                }, icon: Icon(Icons.delete)),
-              );
-            });
-        }),
-        ));
+          child: itemList(),
+        )
+    );
   }
+
+  Widget  itemList(){
+   return Obx(() {
+     if(CategoryCtrl.controller.catData.isNotEmpty){
+       return  ListView.builder(
+           itemCount: CategoryCtrl.controller.catData.length,
+           itemBuilder: (context,  index){
+             return  ListTile(
+               leading: IconButton(onPressed: (){
+                 CategoryCtrl.controller.mgsStatus.value="Changing data by pressing Update.";
+                 txtEditController.text=CategoryCtrl.controller.catData[index].name;
+                 Get.defaultDialog(
+                   title: "Edit",
+                   content: Column(
+                     children: [
+                       TextFormField(
+                         controller: txtEditController,
+                         autofocus: true,
+                       ),
+                       const SizedBox(
+                         height: 10,
+                       ),
+                       Obx(() => Text("${CategoryCtrl.controller.mgsStatus}"))
+                     ],
+                   ),
+                   confirm:  OutlinedButton(onPressed: (){
+                     CategoryCtrl.updateCategory(CategoryCtrl.controller.catData[index].id, txtEditController.text);
+                     CategoryCtrl.uiUpdate();
+                   }, child: const Text("Update")),
+                 );  // end getX dialog box
+
+               }, icon: Icon(Icons.edit_note)),
+               title: Text(CategoryCtrl.controller.catData[index].name),
+               trailing: IconButton(onPressed: (){
+                 CategoryCtrl.controller.mgsStatus.value="Confirm To Delete Data!";
+                 Get.defaultDialog(
+                     title: "Alert!",
+                     content: Obx(()=>Text(CategoryCtrl.controller.mgsStatus.value)),
+                     confirm: ElevatedButton(onPressed: () async {
+                       await CategoryCtrl.deleteCategory(CategoryCtrl.controller.catData[index].id);
+                       CategoryCtrl.uiUpdate();
+                     }, child: Text("Delete"))
+                 );
+               }, icon: Icon(Icons.delete)),
+             );
+           });
+     }else{
+     return  Center(
+       child: CircularProgressIndicator(),
+     );
+     }
+   });
+
+  }
+
+  //
 }

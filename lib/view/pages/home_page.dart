@@ -32,13 +32,13 @@ class _HomePageState extends State<HomePage> {
                 child: Center(child: Text("Drawer Header"),),
               ),
               OutlinedButton(onPressed: () {
-               Get.to(Category());
+               Get.to(()=>const Category());
                 }, child: const Text("Product Catagory")),
               const SizedBox(
                 height: 20,
               ),
               OutlinedButton(onPressed: () {
-               Get.to(ProductModel());
+               Get.to(()=>const ProductModel());
               }, child: Text("Product Model")),
               const SizedBox(
                 height: 20,

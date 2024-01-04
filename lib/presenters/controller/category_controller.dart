@@ -40,11 +40,19 @@ class CategoryCtrl {
     }
   }
 
-  static List<CatModel> getAllCategory() {
-    List<CatModel> data=[];
- categoryModel.getAllData().then((value) {
-  data.addAll(value);
-});
+  static Future<List<CatModel>> getAllCategory() async {
+   List<CatModel> data;
+ data =  await categoryModel.getAllData();
  return data;
+  }
+
+  static  getAllCat() async {
+    List<CatModel> data;
+    data =  await categoryModel.getAllData();
+    controller.catData.assignAll(data);
+  }
+  static void uiUpdate(){
+    getAllCat();
+    Get.appUpdate();
   }
 }
