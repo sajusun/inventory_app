@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inventoryapp/model/firestore/category_model.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/controller/category_controller.dart';
+import 'package:inventoryapp/presenters/controller/getX_controller.dart';
 
 class Category extends StatefulWidget {
   const Category({super.key});
@@ -19,6 +20,7 @@ class _CategoryState extends State<Category> {
     if (addTitle.isTrue) {
       return TextFormField(
         controller: txtController,
+        autofocus: true,
       );
     } else {
       return const Text("Category list");
@@ -42,6 +44,7 @@ class _CategoryState extends State<Category> {
                 onPressed: () {
                   if(addTitle.isTrue && txtController.text.isNotEmpty){
                     CategoryCtrl.addCategory(txtController.text);
+                    txtController.text="";
                   }else{
                     print("empty data");
                   }
@@ -64,31 +67,37 @@ class _CategoryState extends State<Category> {
                 itemBuilder: (context,  index){
               return  ListTile(
                 leading: IconButton(onPressed: (){
+                  CategoryCtrl.controller.mgsStatus.value="Changing data by pressing Update.";
+                  txtEditController.text=snap.data![index].name;
                   Get.defaultDialog(
                     title: "Edit",
                     content: Column(
                       children: [
                         TextFormField(
                           controller: txtEditController,
+                          autofocus: true,
                         ),
-                        Obx(() => Text("${CategoryCtrl.controller.updateStatus}"))
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Obx(() => Text("${CategoryCtrl.controller.mgsStatus}"))
                       ],
                     ),
                     confirm:  OutlinedButton(onPressed: (){
                       CategoryCtrl.updateCategory(snap.data![index].id, txtEditController.text);
-                    }, child: const Text("Update"))
+                      Get.appUpdate();
+                    }, child: const Text("Update")),
+                  );  // end getX dialog box
 
-                  );
-                  setState(() {});
                 }, icon: Icon(Icons.edit_note)),
                 title: Text(snap.data![index].name),
                 trailing: IconButton(onPressed: (){
-                  var confirmation="Confirm To Delete Data!".obs;
+                  CategoryCtrl.controller.mgsStatus.value="Confirm To Delete Data!";
                   Get.defaultDialog(
                     title: "Alert!",
-                    content: Obx(()=>Text("${confirmation}")),
+                    content: Obx(()=>Text("${CategoryCtrl.controller.mgsStatus}")),
                     confirm: ElevatedButton(onPressed: () async {
-                      confirmation.value = await CategoryCtrl.deleteCategory(snap.data![index].id);
+                      await CategoryCtrl.deleteCategory(snap.data![index].id);
                       Get.appUpdate();
                     }, child: Text("Delete"))
                   );

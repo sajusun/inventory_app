@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/app_drawer/drawer_controller.dart';
 import 'package:inventoryapp/view/pages/catagory.dart';
+import 'package:inventoryapp/view/pages/product_model.dart';
 
 class HomePage extends StatefulWidget {
   String title;
@@ -25,20 +27,20 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(10.0),
           child: ListView(
             children: [
-              Container(
+              const SizedBox(
                 height: 100,
                 child: Center(child: Text("Drawer Header"),),
               ),
               OutlinedButton(onPressed: () {
-               Navigator.push(context, MaterialPageRoute(builder: (context)=>Category()));
-                }, child: Text("Product Catagory")),
-              SizedBox(
+               Get.to(Category());
+                }, child: const Text("Product Catagory")),
+              const SizedBox(
                 height: 20,
               ),
               OutlinedButton(onPressed: () {
-                AppDrawerController.gotoPage(context, Category);
+               Get.to(ProductModel());
               }, child: Text("Product Model")),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               OutlinedButton(onPressed: () {}, child: Text("Add Product"))
@@ -46,10 +48,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Center(
+      body: const Center(
           child: Column(
-        children: [
-
+        children: [Text(
+"""
+This is Home Page""")
         ],
       )),
     );

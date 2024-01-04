@@ -23,18 +23,20 @@ class CategoryCtrl {
   static deleteCategory(String documentID) async{
     bool result =await categoryModel.delete(documentID);
     if (result) {
-      return "Delete Success";
+      controller.mgsStatus.value="Delete Success";
+    //  return "Delete Success";
     } else {
-      return "Failed to Delete!";
+      controller.mgsStatus.value="Delete Success";
+     // return "Failed to Delete!";
     }
   }
 
   static updateCategory(String docID, dynamic value) async {
     bool data=await categoryModel.update(docID, value);
     if(data){
-      controller.updateStatus.value="Update Success.";
+      controller.mgsStatus.value="Update Success.";
     }else{
-      controller.updateStatus.value="Update Failed!";
+      controller.mgsStatus.value="Update Failed!";
     }
   }
 
