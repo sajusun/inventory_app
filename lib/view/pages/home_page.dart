@@ -33,17 +33,17 @@ class _HomePageState extends State<HomePage> {
               ),
               OutlinedButton(onPressed: () {
                Get.to(()=>const Category());
-                }, child: const Text("Product Catagory")),
+                }, child: const Text("Product Category")),
               const SizedBox(
                 height: 20,
               ),
               OutlinedButton(onPressed: () {
-               Get.to(()=>const ProductModel());
-              }, child: Text("Product Model")),
+               Get.to(()=> ProductModel());
+              }, child: const Text("Product Model")),
               const SizedBox(
                 height: 20,
               ),
-              OutlinedButton(onPressed: () {}, child: Text("Add Product"))
+              OutlinedButton(onPressed: () {}, child: const Text("Add Product"))
             ],
           ),
         ),

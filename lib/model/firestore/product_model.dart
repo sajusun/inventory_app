@@ -1,19 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // custom model
-class CatModel {
+class ItemModel {
   late String id;
   late String name;
 
-  CatModel(this.id, this.name);
+  ItemModel(this.id, this.name);
 }
 
-class CategoryModel {
+class ProductModel {
   var db = FirebaseFirestore.instance;
-  List<CatModel> catList = [];
-  String collectionPath = "/inventory/products/categoryList";
+  List<ItemModel> modelList = [];
+  String collectionPath = "/inventory/products/itemModelList";
 
-  // add category method
+  // add model name method
   Future<bool> add(dynamic data) async {
     var result=false;
     await db.collection(collectionPath).add(data).then((documentSnapshot) {
@@ -24,11 +24,11 @@ class CategoryModel {
     return result;
   }
 
-  // delete item method
+  // delete item model method
   Future<bool> delete(String id) async {
     bool result = false;
     await db.collection(collectionPath).doc(id).delete().then(
-      (doc) {
+          (doc) {
         result = true;
       },
       onError: (e) {
@@ -38,7 +38,7 @@ class CategoryModel {
     return result;
   }
 
-  // update item method
+  // update item model method
   Future<bool> update(String docID, dynamic value) async {
     bool result = false;
     final docIdRef = db.collection(collectionPath).doc(docID);
@@ -50,26 +50,26 @@ class CategoryModel {
     return result;
   }
 
-  // retrieve category data from firebase store
-  Future<List<CatModel>> getAll() async {
-    List<CatModel> cList = [];
+  // retrieve Model data from firebase store
+  Future<List<ItemModel>> getAll() async {
+    List<ItemModel> list = [];
     await db.collection(collectionPath).get().then(
-      (querySnapshot) {
+          (querySnapshot) {
         for (var docSnapshot in querySnapshot.docs) {
-          cList.add(CatModel(docSnapshot.id, docSnapshot.data()['name']));
+          list.add(ItemModel(docSnapshot.id, docSnapshot.data()['name']));
         }
       },
       onError: (e) => print("Error completing: $e"),
     );
-    return cList;
+    return list;
   }
 
-  // retrieve category data from firebase store
-  Future<List<CatModel>> getAllData() async {
-    List<CatModel> docList = [];
+  // retrieve Model data from firebase store
+  Future<List<ItemModel>> getAllData() async {
+    List<ItemModel> docList = [];
     await db.collection(collectionPath).get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {
-        docList.add(CatModel(docSnapshot.id, docSnapshot.data()['name']));
+        docList.add(ItemModel(docSnapshot.id, docSnapshot.data()['name']));
       }
     });
     return docList;

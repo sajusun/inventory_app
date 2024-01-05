@@ -1,8 +1,5 @@
-
-
 import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/controller/getX_controller.dart';
-
 import '../../model/firestore/category_model.dart';
 
 class CategoryCtrl {
@@ -12,13 +9,11 @@ class CategoryCtrl {
   static addCategory(String name) async {
    var result = await categoryModel.add({"name":name});
    if(result){
-
+Get.snackbar("Message", "Added Successful");
    }else{
-
+     Get.snackbar("Message", "Failed!");
    }
-
  }
-
 
   static deleteCategory(String documentID) async{
     bool result =await categoryModel.delete(documentID);
@@ -49,7 +44,7 @@ class CategoryCtrl {
   static  getAllCat() async {
     List<CatModel> data;
     data =  await categoryModel.getAllData();
-    controller.catData.assignAll(data);
+    controller.categoryList.assignAll(data);
   }
   static void uiUpdate(){
     getAllCat();

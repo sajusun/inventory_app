@@ -12,7 +12,6 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   TextEditingController txtController = TextEditingController();
   TextEditingController txtEditController = TextEditingController();
-  var abc = CategoryCtrl.getAllCategory().obs;
 
   Widget textInputWidget() {
     if (CategoryCtrl.controller.buttonFlag.isTrue) {
@@ -64,9 +63,9 @@ class _CategoryState extends State<Category> {
 
   Widget itemList() {
     return Obx(() {
-      if (CategoryCtrl.controller.catData.isNotEmpty) {
+      if (CategoryCtrl.controller.categoryList.isNotEmpty) {
         return ListView.builder(
-            itemCount: CategoryCtrl.controller.catData.length,
+            itemCount: CategoryCtrl.controller.categoryList.length,
             itemBuilder: (context, index) {
               return ListTile(
                 leading: IconButton(
@@ -74,7 +73,7 @@ class _CategoryState extends State<Category> {
                       CategoryCtrl.controller.mgsStatus.value =
                           "Changing data by pressing Update.";
                       txtEditController.text =
-                          CategoryCtrl.controller.catData[index].name;
+                          CategoryCtrl.controller.categoryList[index].name;
                       Get.defaultDialog(
                         title: "Edit",
                         content: Column(
@@ -93,7 +92,7 @@ class _CategoryState extends State<Category> {
                         confirm: OutlinedButton(
                             onPressed: () {
                               CategoryCtrl.updateCategory(
-                                  CategoryCtrl.controller.catData[index].id,
+                                  CategoryCtrl.controller.categoryList[index].id,
                                   txtEditController.text);
                               CategoryCtrl.uiUpdate();
                             },
@@ -106,7 +105,7 @@ class _CategoryState extends State<Category> {
                       ); // end getX dialog box
                     },
                     icon: Icon(Icons.edit_note)),
-                title: Text(CategoryCtrl.controller.catData[index].name),
+                title: Text(CategoryCtrl.controller.categoryList[index].name),
                 trailing: IconButton(
                     onPressed: () {
                       CategoryCtrl.controller.mgsStatus.value =
@@ -118,7 +117,7 @@ class _CategoryState extends State<Category> {
                         confirm: OutlinedButton(
                             onPressed: () async {
                               await CategoryCtrl.deleteCategory(
-                                  CategoryCtrl.controller.catData[index].id);
+                                  CategoryCtrl.controller.categoryList[index].id);
                               CategoryCtrl.uiUpdate();
                             },
                             child: const Text("Delete")),

@@ -6,6 +6,6 @@ class ValController extends GetMaterialController{
   var updateStatus="Confirm To update!".obs;
   final buttonFlag=false.obs;
 
-  List<dynamic> catData=[].obs;
+  List<dynamic> categoryList=[].obs;
 
 }
