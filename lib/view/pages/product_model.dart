@@ -5,7 +5,7 @@ import '../../presenters/controller/model_controller.dart';
 class ProductModel extends StatelessWidget {
 
   static TextEditingController txtController = TextEditingController();
-   static TextEditingController txtEditController = TextEditingController();
+  static TextEditingController txtEditController = TextEditingController();
 
   const ProductModel({super.key});
 

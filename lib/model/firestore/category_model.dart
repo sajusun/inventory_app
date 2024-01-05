@@ -51,18 +51,18 @@ class CategoryModel {
   }
 
   // retrieve category data from firebase store
-  Future<List<CatModel>> getAll() async {
-    List<CatModel> cList = [];
-    await db.collection(collectionPath).get().then(
-      (querySnapshot) {
-        for (var docSnapshot in querySnapshot.docs) {
-          cList.add(CatModel(docSnapshot.id, docSnapshot.data()['name']));
-        }
-      },
-      onError: (e) => print("Error completing: $e"),
-    );
-    return cList;
-  }
+  // Future<List<CatModel>> getAll() async {
+  //   List<CatModel> cList = [];
+  //   await db.collection(collectionPath).get().then(
+  //     (querySnapshot) {
+  //       for (var docSnapshot in querySnapshot.docs) {
+  //         cList.add(CatModel(docSnapshot.id, docSnapshot.data()['name']));
+  //       }
+  //     },
+  //     onError: (e) => print("Error completing: $e"),
+  //   );
+  //   return cList;
+  // }
 
   // retrieve category data from firebase store
   Future<List<CatModel>> getAllData() async {

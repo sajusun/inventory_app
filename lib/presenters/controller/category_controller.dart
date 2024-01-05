@@ -7,46 +7,51 @@ class CategoryCtrl {
   static var categoryModel = CategoryModel();
 
   static addCategory(String name) async {
-   var result = await categoryModel.add({"name":name});
-   if(result){
-Get.snackbar("Message", "Added Successful");
-   }else{
-     Get.snackbar("Message", "Failed!");
-   }
- }
-
-  static deleteCategory(String documentID) async{
-    bool result =await categoryModel.delete(documentID);
+    var result = await categoryModel.add({"name": name});
     if (result) {
-      controller.mgsStatus.value="Delete Success";
-    //  return "Delete Success";
+      Get.snackbar("Message", "Added Successful");
     } else {
-      controller.mgsStatus.value="Delete Success";
-     // return "Failed to Delete!";
+      Get.snackbar("Message", "Failed!");
+    }
+  }
+
+  static deleteCategory(String documentID) async {
+    bool result = await categoryModel.delete(documentID);
+    if (result) {
+      controller.mgsStatus.value = "Delete Success";
+      //  return "Delete Success";
+    } else {
+      controller.mgsStatus.value = "Delete Success";
+      // return "Failed to Delete!";
     }
   }
 
   static updateCategory(String docID, dynamic value) async {
-    bool data=await categoryModel.update(docID, value);
-    if(data){
-      controller.mgsStatus.value="Update Success.";
-    }else{
-      controller.mgsStatus.value="Update Failed!";
+    bool data = await categoryModel.update(docID, value);
+    if (data) {
+      controller.mgsStatus.value = "Update Success.";
+    } else {
+      controller.mgsStatus.value = "Update Failed!";
     }
   }
 
-  static Future<List<CatModel>> getAllCategory() async {
-   List<CatModel> data;
- data =  await categoryModel.getAllData();
- return data;
+  static categoryNameList() async {
+    List<String> data = [];
+    await categoryModel.getAllData().then((value) {
+      for (var object in value) {
+        data.add(object.name);
+      }
+    });
+    controller.categoryNameList.assignAll(data);
   }
 
-  static  getAllCat() async {
+  static getAllCat() async {
     List<CatModel> data;
-    data =  await categoryModel.getAllData();
+    data = await categoryModel.getAllData();
     controller.categoryList.assignAll(data);
   }
-  static void uiUpdate(){
+
+  static void uiUpdate() {
     getAllCat();
     Get.appUpdate();
   }

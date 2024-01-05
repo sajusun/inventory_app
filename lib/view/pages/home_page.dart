@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/app_drawer/drawer_controller.dart';
+import 'package:inventoryapp/view/pages/add_item.dart';
 import 'package:inventoryapp/view/pages/catagory.dart';
 import 'package:inventoryapp/view/pages/product_model.dart';
 
@@ -43,7 +44,9 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
-              OutlinedButton(onPressed: () {}, child: const Text("Add Product"))
+              OutlinedButton(onPressed: () {
+                Get.to(()=>AddItem());
+              }, child: const Text("Add Product"))
             ],
           ),
         ),

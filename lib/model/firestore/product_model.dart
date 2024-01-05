@@ -51,18 +51,18 @@ class ProductModel {
   }
 
   // retrieve Model data from firebase store
-  Future<List<ItemModel>> getAll() async {
-    List<ItemModel> list = [];
-    await db.collection(collectionPath).get().then(
-          (querySnapshot) {
-        for (var docSnapshot in querySnapshot.docs) {
-          list.add(ItemModel(docSnapshot.id, docSnapshot.data()['name']));
-        }
-      },
-      onError: (e) => print("Error completing: $e"),
-    );
-    return list;
-  }
+  // Future<List<ItemModel>> getAll() async {
+  //   List<ItemModel> list = [];
+  //   await db.collection(collectionPath).get().then(
+  //         (querySnapshot) {
+  //       for (var docSnapshot in querySnapshot.docs) {
+  //         list.add(ItemModel(docSnapshot.id, docSnapshot.data()['name']));
+  //       }
+  //     },
+  //     onError: (e) => print("Error completing: $e"),
+  //   );
+  //   return list;
+  // }
 
   // retrieve Model data from firebase store
   Future<List<ItemModel>> getAllData() async {
