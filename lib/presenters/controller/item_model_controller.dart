@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:inventoryapp/model/firestore/product_model.dart';
+import 'package:inventoryapp/model/firestore/item_model_model.dart';
 import 'package:inventoryapp/presenters/controller/getX_controller.dart';
 
 

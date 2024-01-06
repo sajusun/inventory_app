@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../presenters/controller/model_controller.dart';
+import '../../presenters/controller/item_model_controller.dart';
 
 class ProductModel extends StatelessWidget {
 

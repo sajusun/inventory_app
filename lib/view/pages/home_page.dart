@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/app_drawer/drawer_controller.dart';
 import 'package:inventoryapp/view/pages/add_item.dart';
 import 'package:inventoryapp/view/pages/catagory.dart';
-import 'package:inventoryapp/view/pages/product_model.dart';
+import 'package:inventoryapp/view/pages/item_model.dart';
 
 class HomePage extends StatefulWidget {
   String title;

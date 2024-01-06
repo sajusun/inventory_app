@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:inventoryapp/model/firestore/category_model.dart';
-import 'package:inventoryapp/model/firestore/product_model.dart';
 import 'package:inventoryapp/presenters/controller/category_controller.dart';
 import 'package:inventoryapp/presenters/controller/getX_controller.dart';
+
+import '../../model/firestore/item_model_model.dart';
 
 class AddItemController{
   static var controller=Get.put(ValController());
