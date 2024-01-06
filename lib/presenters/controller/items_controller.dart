@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:inventoryapp/model/firestore/items_model.dart';
 import 'package:inventoryapp/presenters/controller/getX_controller.dart';
 
-class CategoryCtrl {
+class ItemsCtrl {
   static var controller = Get.put(ValController());
   static var itemsModel = ItemsModel();
 
@@ -35,7 +35,7 @@ class CategoryCtrl {
     }
   }
 
-  static categoryNameList() async {
+  static itemsNameList() async {
     List<String> data = [];
     await itemsModel.getAllData().then((value) {
       for (var object in value) {
@@ -48,7 +48,7 @@ class CategoryCtrl {
   static getAllItems() async {
     List<Items> data;
     data = await itemsModel.getAllData();
-    controller.categoryList.assignAll(data);
+    controller.dataList.assignAll(data);
   }
 
   static void uiUpdate() {

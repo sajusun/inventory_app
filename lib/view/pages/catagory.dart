@@ -63,9 +63,9 @@ class _CategoryState extends State<Category> {
 
   Widget itemList() {
     return Obx(() {
-      if (CategoryCtrl.controller.categoryList.isNotEmpty) {
+      if (CategoryCtrl.controller.dataList.isNotEmpty) {
         return ListView.builder(
-            itemCount: CategoryCtrl.controller.categoryList.length,
+            itemCount: CategoryCtrl.controller.dataList.length,
             itemBuilder: (context, index) {
               return ListTile(
                 leading: IconButton(
@@ -73,7 +73,7 @@ class _CategoryState extends State<Category> {
                       CategoryCtrl.controller.mgsStatus.value =
                           "Changing data by pressing Update.";
                       txtEditController.text =
-                          CategoryCtrl.controller.categoryList[index].name;
+                          CategoryCtrl.controller.dataList[index].name;
                       Get.defaultDialog(
                         title: "Edit",
                         content: Column(
@@ -92,7 +92,7 @@ class _CategoryState extends State<Category> {
                         confirm: OutlinedButton(
                             onPressed: () {
                               CategoryCtrl.updateCategory(
-                                  CategoryCtrl.controller.categoryList[index].id,
+                                  CategoryCtrl.controller.dataList[index].id,
                                   txtEditController.text);
                               CategoryCtrl.uiUpdate();
                             },
@@ -105,7 +105,7 @@ class _CategoryState extends State<Category> {
                       ); // end getX dialog box
                     },
                     icon: Icon(Icons.edit_note)),
-                title: Text(CategoryCtrl.controller.categoryList[index].name),
+                title: Text(CategoryCtrl.controller.dataList[index].name),
                 trailing: IconButton(
                     onPressed: () {
                       CategoryCtrl.controller.mgsStatus.value =
@@ -117,7 +117,7 @@ class _CategoryState extends State<Category> {
                         confirm: OutlinedButton(
                             onPressed: () async {
                               await CategoryCtrl.deleteCategory(
-                                  CategoryCtrl.controller.categoryList[index].id);
+                                  CategoryCtrl.controller.dataList[index].id);
                               CategoryCtrl.uiUpdate();
                             },
                             child: const Text("Delete")),

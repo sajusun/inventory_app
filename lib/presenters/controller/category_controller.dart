@@ -48,7 +48,7 @@ class CategoryCtrl {
   static getAllCat() async {
     List<CatModel> data;
     data = await categoryModel.getAllData();
-    controller.categoryList.assignAll(data);
+    controller.dataList.assignAll(data);
   }
 
   static void uiUpdate() {

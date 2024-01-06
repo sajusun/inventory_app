@@ -59,9 +59,9 @@ class ProductModel extends StatelessWidget {
 
   Widget itemList() {
     return Obx(() {
-      if (ModelCtrl.controller.categoryList.isNotEmpty) {
+      if (ModelCtrl.controller.dataList.isNotEmpty) {
         return ListView.builder(
-            itemCount: ModelCtrl.controller.categoryList.length,
+            itemCount: ModelCtrl.controller.dataList.length,
             itemBuilder: (context, index) {
               return ListTile(
                 leading: IconButton(
@@ -69,7 +69,7 @@ class ProductModel extends StatelessWidget {
                       ModelCtrl.controller.mgsStatus.value =
                       "Changing data by pressing Update.";
                       txtEditController.text =
-                          ModelCtrl.controller.categoryList[index].name;
+                          ModelCtrl.controller.dataList[index].name;
                       Get.defaultDialog(
                         title: "Edit",
                         content: Column(
@@ -88,7 +88,7 @@ class ProductModel extends StatelessWidget {
                         confirm: OutlinedButton(
                             onPressed: () {
                               ModelCtrl.updateModel(
-                                  ModelCtrl.controller.categoryList[index].id,
+                                  ModelCtrl.controller.dataList[index].id,
                                   txtEditController.text);
                               ModelCtrl.uiUpdate();
                             },
@@ -101,7 +101,7 @@ class ProductModel extends StatelessWidget {
                       ); // end getX dialog box
                     },
                     icon: Icon(Icons.edit_note)),
-                title: Text(ModelCtrl.controller.categoryList[index].name),
+                title: Text(ModelCtrl.controller.dataList[index].name),
                 trailing: IconButton(
                     onPressed: () {
                       ModelCtrl.controller.mgsStatus.value =
@@ -113,7 +113,7 @@ class ProductModel extends StatelessWidget {
                         confirm: OutlinedButton(
                             onPressed: () async {
                               await ModelCtrl.deleteModel(
-                                  ModelCtrl.controller.categoryList[index].id);
+                                  ModelCtrl.controller.dataList[index].id);
                               ModelCtrl.uiUpdate();
                             },
                             child: const Text("Delete")),

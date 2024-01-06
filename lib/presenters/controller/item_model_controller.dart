@@ -45,7 +45,7 @@ class ModelCtrl {
   static  getAllCat() async {
     List<ItemModel> data;
     data =  await productModel.getAllData();
-    controller.categoryList.assignAll(data);
+    controller.dataList.assignAll(data);
   }
   static void uiUpdate(){
     getAllCat();
