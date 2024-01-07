@@ -131,7 +131,7 @@ class AddProduct extends StatelessWidget {
              ),
            ),
 TextFormField(
-  controller: AddItemController.itemNumber,
+  controller: AddItemController.quantity,
 ),
           ElevatedButton(onPressed: (){
             AddItemController.addItem();
