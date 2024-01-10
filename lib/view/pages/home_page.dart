@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/app_drawer/drawer_controller.dart';
+import 'package:inventoryapp/presenters/controller/home_page_controller.dart';
 import 'package:inventoryapp/view/pages/add_product.dart';
 import 'package:inventoryapp/view/pages/catagory.dart';
 import 'package:inventoryapp/view/pages/item_model.dart';
@@ -18,7 +19,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    HomePageCtrl.getAllItems();
     return Scaffold(
+
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,

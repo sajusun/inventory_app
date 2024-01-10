@@ -3,10 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // custom model
 class Products {
   late String id;
-  late String itemName;
-  late String modelName;
-  late String category;
-  late int quantity;
+  late String? itemName;
+  late String? modelName;
+  late String? category;
+  late int? quantity;
 
   Products(this.id, this.itemName,this.modelName,this.category,this.quantity);
 }
@@ -19,9 +19,7 @@ class ProductsModel {
     var result=false;
     await db.collection(collectionPath).add(data).then((documentSnapshot) {
       result= true;
-      print("added");
     }, onError: (e) {
-      print("not added");
       result= false;
     });
     return result;
@@ -42,23 +40,23 @@ class ProductsModel {
   }
 
   // update product  method
-  Future<bool> update(String docID, dynamic value) async {
-    bool result = false;
-    final docIdRef = db.collection(collectionPath).doc(docID);
-    await docIdRef.update({"name": value}).then((value) {
-      result = true;
-    }, onError: (e) {
-      result = false;
-    });
-    return result;
-  }
+  // Future<bool> update(String docID, dynamic value) async {
+  //   bool result = false;
+  //   final docIdRef = db.collection(collectionPath).doc(docID);
+  //   await docIdRef.update({"name": value}).then((value) {
+  //     result = true;
+  //   }, onError: (e) {
+  //     result = false;
+  //   });
+  //   return result;
+  // }
 
   // retrieve Product data from firebase store
-  Future<List<Products>> getAllData() async {
+  Future<List<Products>> getAllItems() async {
     List<Products> docList = [];
     await db.collection(collectionPath).get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {
-        docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['modelName'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
+        docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
       }
     });
     return docList;
