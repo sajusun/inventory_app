@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:inventoryapp/model/firestore/category_model.dart';
 import 'package:inventoryapp/model/firestore/items_model.dart';
 import 'package:inventoryapp/model/firestore/product_model.dart';
-import 'package:inventoryapp/presenters/controller/getX_controller.dart';
+import 'package:inventoryapp/presenters/controller/getx_controller.dart';
 import '../../model/firestore/item_model_model.dart';
 
 class AddItemController {
@@ -17,17 +17,23 @@ class AddItemController {
     var itemModel = controller.itemModelDropdownValue.value;
     var category = controller.categoryDropdownValue.value;
 
-    var data = {
-      "itemName": itemName,
-      "itemModel": itemModel,
-      "category": category,
-      "quantity": int.parse(quantity.text)
-    };
-    var result = await ProductsModel().add(data);
-    if(result){
-      Get.snackbar("Message", "Product Added");
+
+    if(itemName.isNotEmpty && itemModel.isNotEmpty && category.isNotEmpty && quantity.text.isNotEmpty) {
+      var data = {
+        "itemName": itemName,
+        "itemModel": itemModel,
+        "category": category,
+        "quantity": int.parse(quantity.text)
+      };
+      var result = await ProductsModel().add(data);
+      if (result) {
+        Get.snackbar("Message", "Product Added");
+        setDefault();
+      } else {
+        Get.snackbar("Message", "Failed !!");
+      }
     }else{
-      Get.snackbar("Message", "Failed !!");
+      Get.snackbar("Message", "Input All Field");
     }
 
     // Get.snackbar("title", """${controller.itemsNameDropdownValue}
@@ -67,7 +73,17 @@ class AddItemController {
     controller.itemsNameList.assignAll(data);
   }
 
+  static setDefault(){
+    controller.categoryDropdownHints.value="Select Category";
+    controller.itemModelDropdownHints.value="Select Model/Color";
+    controller.itemsNameDropdownHints.value="Select Items";
+    controller.itemModelDropdownValue.value="";
+    controller.itemsNameDropdownValue.value="";
+    controller.categoryDropdownValue.value="";
+    quantity.text="";
+  }
   static uiUpdate() {
+setDefault();
     categoryNameList();
     itemModelNameList();
     itemsNameList();

@@ -15,11 +15,11 @@ class CategoryModel {
 
   // add category method
   Future<bool> add(dynamic data) async {
-    var result=false;
+    var result = false;
     await db.collection(collectionPath).add(data).then((documentSnapshot) {
-      result= true;
+      result = true;
     }, onError: (e) {
-      result= false;
+      result = false;
     });
     return result;
   }
@@ -50,19 +50,26 @@ class CategoryModel {
     return result;
   }
 
-  // retrieve category data from firebase store
-  // Future<List<CatModel>> getAll() async {
-  //   List<CatModel> cList = [];
-  //   await db.collection(collectionPath).get().then(
-  //     (querySnapshot) {
-  //       for (var docSnapshot in querySnapshot.docs) {
-  //         cList.add(CatModel(docSnapshot.id, docSnapshot.data()['name']));
-  //       }
-  //     },
-  //     onError: (e) => print("Error completing: $e"),
-  //   );
-  //   return cList;
-  // }
+
+  Future<void> getQuantity(String docID) async {
+    int stockValue = 0;
+    await db.collection(collectionPath).doc(docID).get().then((query) {
+      stockValue = query.data()!["stockItems"];
+      print(query.data()!["stockItems"]);
+    });
+  }
+
+  // update item method
+  Future<bool> updateQuantity(String docID, int value) async {
+    final docIdRef = db.collection(collectionPath).doc(docID);
+    bool result = false;
+    await docIdRef.update({"stockItems": value}).then((value) {
+      result = true;
+    }, onError: (e) {
+      result = false;
+    });
+    return result;
+  }
 
   // retrieve category data from firebase store
   Future<List<CatModel>> getAllData() async {

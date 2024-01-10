@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:inventoryapp/presenters/controller/getX_controller.dart';
+import 'package:inventoryapp/presenters/controller/getx_controller.dart';
 import '../../model/firestore/category_model.dart';
 
 class CategoryCtrl {
@@ -7,7 +7,8 @@ class CategoryCtrl {
   static var categoryModel = CategoryModel();
 
   static addCategory(String name) async {
-    var result = await categoryModel.add({"name": name});
+    int items=0;
+    var result = await categoryModel.add({"name": name,"items":items});
     if (result) {
       Get.snackbar("Message", "Added Successful");
     } else {

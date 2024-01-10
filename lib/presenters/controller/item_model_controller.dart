@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:inventoryapp/model/firestore/item_model_model.dart';
-import 'package:inventoryapp/presenters/controller/getX_controller.dart';
+import 'package:inventoryapp/presenters/controller/getx_controller.dart';
 
 
 class ModelCtrl {
@@ -8,7 +8,8 @@ class ModelCtrl {
   static var productModel = ProductModel();
 
   static addModel(String name) async {
-    var result = await productModel.add({"name":name});
+    int items=0;
+    var result = await productModel.add({"name":name,"items":items});
     if(result){
       Get.snackbar("Message", "Added Successful");
     }else{

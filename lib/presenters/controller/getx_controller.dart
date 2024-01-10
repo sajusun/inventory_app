@@ -11,8 +11,11 @@ class ValController extends GetMaterialController{
   List<dynamic> itemsNameList=[].obs;
 
 
-  var categoryDropdownValue="Select Category".obs;
-  var itemModelDropdownValue="Select Model".obs;
-  var itemsNameDropdownValue="Select Items".obs;
+  var categoryDropdownValue="".obs;
+  var itemModelDropdownValue="".obs;
+  var itemsNameDropdownValue="".obs;
 
+  var categoryDropdownHints="Select Category".obs;
+  var itemModelDropdownHints="Select Model/Color".obs;
+  var itemsNameDropdownHints="Select Items".obs;
 }

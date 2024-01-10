@@ -49,6 +49,17 @@ class ItemsModel {
     });
     return result;
   }
+  // update i number of tem method
+  Future<bool> updateQuantity(String docID, int value) async {
+    bool result = false;
+    final docIdRef = db.collection(collectionPath).doc(docID);
+    await docIdRef.update({"stockItems": value}).then((value) {
+      result = true;
+    }, onError: (e) {
+      result = false;
+    });
+    return result;
+  }
 
   // retrieve Model data from firebase store
   Future<List<Items>> getAllData() async {

@@ -38,7 +38,7 @@ class Items extends StatelessWidget{
                 onPressed: () {
                   if (ItemsCtrl.controller.buttonFlag.isTrue &&
                       txtController.text.isNotEmpty) {
-                    ItemsCtrl.addCategory(txtController.text);
+                    ItemsCtrl.addItems(txtController.text);
                     txtController.text = "";
                   } else if (ItemsCtrl.controller.buttonFlag.isTrue &&
                       txtController.text.isEmpty) {
@@ -86,7 +86,7 @@ class Items extends StatelessWidget{
                         ),
                         confirm: OutlinedButton(
                             onPressed: () {
-                              ItemsCtrl.updateCategory(
+                              ItemsCtrl.updateItems(
                                   ItemsCtrl.controller.dataList[index].id,
                                   txtEditController.text);
                               ItemsCtrl.uiUpdate();
@@ -111,7 +111,7 @@ class Items extends StatelessWidget{
                             Text(ItemsCtrl.controller.mgsStatus.value)),
                         confirm: OutlinedButton(
                             onPressed: () async {
-                              await ItemsCtrl.deleteCategory(
+                              await ItemsCtrl.deleteItems(
                                   ItemsCtrl.controller.dataList[index].id);
                               ItemsCtrl.uiUpdate();
                             },

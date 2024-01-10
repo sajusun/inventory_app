@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ItemModel {
   late String id;
   late String name;
+  late int? stockItems;
 
-  ItemModel(this.id, this.name);
+  ItemModel(this.id, this.name,this.stockItems);
 }
 
 class ProductModel {
@@ -49,13 +50,24 @@ class ProductModel {
     });
     return result;
   }
+  // update number of i item method
+  Future<bool> updateQuantity(String docID, int value) async {
+    bool result = false;
+    final docIdRef = db.collection(collectionPath).doc(docID);
+    await docIdRef.update({"stockItems": value}).then((value) {
+      result = true;
+    }, onError: (e) {
+      result = false;
+    });
+    return result;
+  }
 
   // retrieve Model data from firebase store
   Future<List<ItemModel>> getAllData() async {
     List<ItemModel> docList = [];
     await db.collection(collectionPath).get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {
-        docList.add(ItemModel(docSnapshot.id, docSnapshot.data()['name']));
+        docList.add(ItemModel(docSnapshot.id, docSnapshot.data()['name'],docSnapshot.data()["stockItems"]));
       }
     });
     return docList;

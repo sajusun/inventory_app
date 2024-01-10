@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 import 'package:inventoryapp/model/firestore/items_model.dart';
-import 'package:inventoryapp/presenters/controller/getX_controller.dart';
+import 'package:inventoryapp/presenters/controller/getx_controller.dart';
 
 class ItemsCtrl {
   static var controller = Get.put(ValController());
   static var itemsModel = ItemsModel();
 
-  static addCategory(String name) async {
-    var result = await itemsModel.add({"name": name});
+  static addItems(String name) async {
+    int items=0;
+    var result = await itemsModel.add({"name": name,"items":items});
     if (result) {
       Get.snackbar("Message", "Added Successful");
     } else {
@@ -15,7 +16,7 @@ class ItemsCtrl {
     }
   }
 
-  static deleteCategory(String documentID) async {
+  static deleteItems(String documentID) async {
     bool result = await itemsModel.delete(documentID);
     if (result) {
       controller.mgsStatus.value = "Delete Success";
@@ -26,8 +27,17 @@ class ItemsCtrl {
     }
   }
 
-  static updateCategory(String docID, dynamic value) async {
+  static updateItems(String docID, dynamic value) async {
     bool data = await itemsModel.update(docID, value);
+    if (data) {
+      controller.mgsStatus.value = "Update Success.";
+    } else {
+      controller.mgsStatus.value = "Update Failed!";
+    }
+  }
+
+  static updateItemsQuantity(String docID, int value) async {
+    bool data = await itemsModel.updateQuantity(docID, value);
     if (data) {
       controller.mgsStatus.value = "Update Success.";
     } else {

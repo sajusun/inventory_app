@@ -23,13 +23,13 @@ class AddProduct extends StatelessWidget {
                   height: 40,
                   child: Obx(() =>
                       DropdownButton(
-                          style: TextStyle(color: Colors.white,height: 0),
+                          style: const TextStyle(color: Colors.white,height: 0),
                           padding: const EdgeInsets.only(left: 15,right: 15,top: 10),
                           alignment: Alignment.center,
                           dropdownColor: Colors.grey,
-                          underline: SizedBox(),
+                          underline: const SizedBox(),
                           hint: Text(
-                              AddItemController.controller.itemsNameDropdownValue.value
+                              AddItemController.controller.itemsNameDropdownHints.value
                           ),
                           isDense: true,
                           isExpanded: false,
@@ -40,6 +40,8 @@ class AddProduct extends StatelessWidget {
                             );
                           }).toList(),
                           onChanged: (dynamic data) {
+                            AddItemController.controller.itemsNameDropdownHints.value =
+                                data;
                             AddItemController.controller.itemsNameDropdownValue.value =
                                 data;
                           })
@@ -67,7 +69,7 @@ class AddProduct extends StatelessWidget {
                       dropdownColor: Colors.grey,
                     underline: SizedBox(),
                       hint: Text(
-                          AddItemController.controller.categoryDropdownValue.value
+                          AddItemController.controller.categoryDropdownHints.value
                       ),
                       isDense: true,
                       isExpanded: false,
@@ -78,6 +80,8 @@ class AddProduct extends StatelessWidget {
                         );
                       }).toList(),
                       onChanged: (dynamic data) {
+                        AddItemController.controller.categoryDropdownHints.value =
+                            data;
                         AddItemController.controller.categoryDropdownValue.value =
                             data;
                       })
@@ -104,7 +108,7 @@ class AddProduct extends StatelessWidget {
                      underline: const SizedBox(),
                      style: TextStyle(color: Colors.red,height: 0),
                      hint: Text(
-              AddItemController.controller.itemModelDropdownValue.value
+              AddItemController.controller.itemModelDropdownHints.value
                      ),
                     isDense: true,
                      isExpanded: false,
@@ -118,8 +122,10 @@ class AddProduct extends StatelessWidget {
                        );
                      }).toList(),
                      onChanged: (dynamic data) {
+                       AddItemController.controller.itemModelDropdownHints.value =
+                        data;
                        AddItemController.controller.itemModelDropdownValue.value =
-                data;
+                           data;
                      },
                      padding: const EdgeInsets.only(left: 15,right: 15,top: 10),
                      alignment: Alignment.center,
@@ -132,6 +138,7 @@ class AddProduct extends StatelessWidget {
            ),
 TextFormField(
   controller: AddItemController.quantity,
+  keyboardType: TextInputType.number,
 ),
           ElevatedButton(onPressed: (){
             AddItemController.addItem();
