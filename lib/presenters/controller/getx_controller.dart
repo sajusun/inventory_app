@@ -5,6 +5,7 @@ class ValController extends GetMaterialController{
   final buttonFlag=false.obs;
 
   List<dynamic> dataList=[].obs;
+  List<dynamic> allProductList=[].obs;
 
   List<dynamic> categoryNameList=[].obs;
   List<dynamic> itemModelNameList=[].obs;

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventoryapp/presenters/app_drawer/drawer_controller.dart';
 import 'package:inventoryapp/presenters/controller/home_page_controller.dart';
 import 'package:inventoryapp/view/pages/add_product.dart';
 import 'package:inventoryapp/view/pages/catagory.dart';
 import 'package:inventoryapp/view/pages/item_model.dart';
 import 'package:inventoryapp/view/pages/items.dart';
+
+import '../../presenters/controller/getx_controller.dart';
 
 class HomePage extends StatefulWidget {
   String title;
@@ -17,6 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+    var controller = Get.put(ValController());
   @override
   Widget build(BuildContext context) {
     HomePageCtrl.getAllItems();
@@ -61,13 +63,36 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: const Center(
-          child: Column(
-        children: [Text(
-"""
-This is Home Page""")
-        ],
-      )),
+      body: SizedBox(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: allProductList(),
+        ),
+      )
     );
-  }
+  }   //   build context
+
+//   all product list function
+Widget allProductList(){
+   return Obx(() {
+     if (controller.allProductList.isNotEmpty) {
+       return ListView.builder(
+           itemCount: controller.allProductList.length,
+           itemBuilder: (context, index){
+         return Card(
+               child: Column(
+                 children: [
+                   Text("${controller.allProductList[index].itemName} -" " ${controller.allProductList[index].modelName}"),
+                   Text("Available Items: ${controller.allProductList[index].quantity}, "  "Category : ${controller.allProductList[index].category}"),
+                 ],
+               ),
+             );
+
+       });
+     } else {
+       return  const Center(child: CircularProgressIndicator());
+     }
+   });
+
+}
 }

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 // custom model
 class Products {
-  late String id;
+  late String? id;
   late String? itemName;
   late String? modelName;
   late String? category;
@@ -54,7 +54,7 @@ class ProductsModel {
   // retrieve Product data from firebase store
   Future<List<Products>> getAllItems() async {
     List<Products> docList = [];
-    await db.collection(collectionPath).get().then((querySnapshot) {
+    await db.collection(collectionPath).where("category", isEqualTo: "All").get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {
         docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
       }
