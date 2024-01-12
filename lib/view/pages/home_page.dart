@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inventoryapp/model/firestore/product_model.dart';
 import 'package:inventoryapp/presenters/controller/home_page_controller.dart';
 import 'package:inventoryapp/view/pages/add_product.dart';
 import 'package:inventoryapp/view/pages/catagory.dart';
 import 'package:inventoryapp/view/pages/item_model.dart';
 import 'package:inventoryapp/view/pages/items.dart';
-
 import '../../presenters/controller/getx_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -66,7 +66,17 @@ class _HomePageState extends State<HomePage> {
       body: SizedBox(
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: allProductList(),
+         child: allProductList(),
+        //   child: ElevatedButton(onPressed: () async {
+        //     var data = await ProductsModel().findItems();
+        //     if(data["status"]){
+        //       print(data["status"]);
+        //       print(data["docID"]);
+        //       print(data["quantity"]);
+        //     }else{
+        //       print(data["status"]);
+        //     }
+        //   }, child: Text("check")),
         ),
       )
     );

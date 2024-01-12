@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/model/firestore/category_model.dart';
@@ -16,22 +15,41 @@ class AddItemController {
     var itemModel = controller.itemModelDropdownValue.value;
     var category = controller.categoryDropdownValue.value;
 
-
-    if(itemName.isNotEmpty && itemModel.isNotEmpty && category.isNotEmpty && quantity.text.isNotEmpty) {
+    if (itemName.isNotEmpty &&
+        itemModel.isNotEmpty &&
+        category.isNotEmpty &&
+        quantity.text.isNotEmpty) {
       var data = {
         "itemName": itemName,
         "itemModel": itemModel,
         "category": category,
         "quantity": int.parse(quantity.text)
       };
-      var result = await ProductsModel().add(data);
-      if (result) {
-        Get.snackbar("Message", "Product Added");
-        setDefault();
+      var findData = await ProductsModel().findItems(category,itemName,itemModel);
+      if (findData["status"]) {
+        print(findData["status"]);
+        print(findData["docID"]);
+        print(findData["quantity"]);
+        var result= await ProductsModel().update(findData["docID"], findData["quantity"]+int.parse(quantity.text));
+        if (result) {
+          Get.snackbar("Message", "Product updated");
+          setDefault();
+        } else {
+          Get.snackbar("Message", "Failed updated !!");
+        }
+
       } else {
-        Get.snackbar("Message", "Failed !!");
+        print(findData["status"]);
+
+        var result = await ProductsModel().add(data);
+        if (result) {
+          Get.snackbar("Message", "Product Added");
+          setDefault();
+        } else {
+          Get.snackbar("Message", "Failed !!");
+        }
       }
-    }else{
+    } else {
       Get.snackbar("Message", "Input All Field");
     }
 
@@ -72,17 +90,18 @@ class AddItemController {
     controller.itemsNameList.assignAll(data);
   }
 
-  static setDefault(){
-    controller.categoryDropdownHints.value="Select Category";
-    controller.itemModelDropdownHints.value="Select Model/Color";
-    controller.itemsNameDropdownHints.value="Select Items";
-    controller.itemModelDropdownValue.value="";
-    controller.itemsNameDropdownValue.value="";
-    controller.categoryDropdownValue.value="";
-    quantity.text="";
+  static setDefault() {
+    controller.categoryDropdownHints.value = "Select Category";
+    controller.itemModelDropdownHints.value = "Select Model/Color";
+    controller.itemsNameDropdownHints.value = "Select Items";
+    controller.itemModelDropdownValue.value = "";
+    controller.itemsNameDropdownValue.value = "";
+    controller.categoryDropdownValue.value = "";
+    quantity.text = "";
   }
+
   static uiUpdate() {
-setDefault();
+    setDefault();
     categoryNameList();
     itemModelNameList();
     itemsNameList();
