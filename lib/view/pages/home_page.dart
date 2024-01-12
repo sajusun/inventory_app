@@ -79,14 +79,22 @@ Widget allProductList(){
        return ListView.builder(
            itemCount: controller.allProductList.length,
            itemBuilder: (context, index){
-         return Card(
-               child: Column(
-                 children: [
-                   Text("${controller.allProductList[index].itemName} -" " ${controller.allProductList[index].modelName}"),
-                   Text("Available Items: ${controller.allProductList[index].quantity}, "  "Category : ${controller.allProductList[index].category}"),
-                 ],
-               ),
-             );
+         return Padding(
+           padding: const EdgeInsets.only(top: 8.0),
+           child: Container(
+             decoration: BoxDecoration(
+               color: Colors.cyan,
+               borderRadius: BorderRadius.circular(8),
+               border: Border.all()
+             ),
+             child: Column(
+               children: [
+                 Text(" ${controller.allProductList[index].itemName}  - " " ${controller.allProductList[index].modelName}"),
+                 Text( " Category : ${controller.allProductList[index].category}, " " Available Items : ${controller.allProductList[index].quantity} "),
+               ],
+             ),
+           ),
+         );
 
        });
      } else {
