@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       body: SizedBox(
         child: Padding(
           padding: const EdgeInsets.all(10),
-         child: allProductList(),
+         child: futureView(),
         //   child: ElevatedButton(onPressed: () async {
         //     var data = await ProductsModel().findItems();
         //     if(data["status"]){
@@ -113,4 +113,32 @@ Widget allProductList(){
    });
 
 }
+
+Widget futureView(){
+  return  FutureBuilder(future: ProductsModel().getAllItems(),
+        builder: (context, data){
+      return ListView.builder(
+          itemCount: data.data?.length,
+          itemBuilder: (context, index){
+            return Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.cyan,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all()
+                ),
+                child: Column(
+                  children: [
+                    Text(" ${data.data?[index].itemName}  - " " ${data.data?[index].modelName}"),
+                    Text( " Category : ${data.data?[index].category}, " " Available Items : ${data.data?[index].quantity} "),
+                  ],
+                ),
+              ),
+            );
+      });
+        });
+}
+
+
 }

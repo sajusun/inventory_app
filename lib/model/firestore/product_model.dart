@@ -54,13 +54,33 @@ class ProductsModel {
   // retrieve Product data from firebase store
   Future<List<Products>> getAllItems() async {
     List<Products> docList = [];
-    await db.collection(collectionPath).where("category").get().then((querySnapshot) {
+    await db.collection(collectionPath).get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {
         docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
       }
     });
     return docList;
   }
+
+
+  // retrieve Product data from firebase store
+  Future<List<Products>> getAllItem() async {
+    List<Products> docList = [];
+    await db.collection(collectionPath).snapshots().listen((event) {
+        for (var docSnapshot in event.docs) {
+          docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
+        }
+    });
+    // await db.collection(collectionPath).where("category").get().then((querySnapshot) {
+    //   for (var docSnapshot in querySnapshot.docs) {
+    //     docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
+    //   }
+    // });
+    return docList;
+  }
+
+
+
 
 //   finding items in db
   Future <Map<String, dynamic>> findItems(String category,String itemName,String itemModel) async {
