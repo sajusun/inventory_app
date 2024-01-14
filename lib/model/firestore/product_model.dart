@@ -52,13 +52,15 @@ class ProductsModel {
   }
 
   // retrieve Product data from firebase store
-  Future<List<Products>> getAllItems() async {
+  Future<List<Products>> getAllItems()  async {
     List<Products> docList = [];
     await db.collection(collectionPath).get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {
         docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
+        print("hello");
       }
     });
+    print("hello2");
     return docList;
   }
 
@@ -69,13 +71,9 @@ class ProductsModel {
     await db.collection(collectionPath).snapshots().listen((event) {
         for (var docSnapshot in event.docs) {
           docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
+
         }
     });
-    // await db.collection(collectionPath).where("category").get().then((querySnapshot) {
-    //   for (var docSnapshot in querySnapshot.docs) {
-    //     docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
-    //   }
-    // });
     return docList;
   }
 

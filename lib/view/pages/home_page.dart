@@ -115,8 +115,8 @@ Widget allProductList(){
 }
 
 Widget futureView(){
-  return  FutureBuilder(future: ProductsModel().getAllItems(),
-        builder: (context, data){
+  return  FutureBuilder(future:ProductsModel().getAllItems(),
+        builder: (context, AsyncSnapshot<List<Products>> data){
       return ListView.builder(
           itemCount: data.data?.length,
           itemBuilder: (context, index){
