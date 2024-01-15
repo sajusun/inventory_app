@@ -66,17 +66,7 @@ class _HomePageState extends State<HomePage> {
       body: SizedBox(
         child: Padding(
           padding: const EdgeInsets.all(10),
-         child: futureView(),
-        //   child: ElevatedButton(onPressed: () async {
-        //     var data = await ProductsModel().findItems();
-        //     if(data["status"]){
-        //       print(data["status"]);
-        //       print(data["docID"]);
-        //       print(data["quantity"]);
-        //     }else{
-        //       print(data["status"]);
-        //     }
-        //   }, child: Text("check")),
+         child: allProductList(),
         ),
       )
     );
@@ -105,7 +95,6 @@ Widget allProductList(){
              ),
            ),
          );
-
        });
      } else {
        return  const Center(child: CircularProgressIndicator());

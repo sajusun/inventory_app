@@ -4,6 +4,7 @@ import 'package:inventoryapp/model/firestore/category_model.dart';
 import 'package:inventoryapp/model/firestore/items_model.dart';
 import 'package:inventoryapp/model/firestore/product_model.dart';
 import 'package:inventoryapp/presenters/controller/getx_controller.dart';
+import 'package:inventoryapp/presenters/controller/home_page_controller.dart';
 import '../../model/firestore/item_model_model.dart';
 
 class AddItemController {
@@ -25,7 +26,7 @@ class AddItemController {
         "category": category,
         "quantity": int.parse(quantity.text)
       };
-      var findData = await ProductsModel().findItems(category,itemName,itemModel);
+      var findData = await ProductsModel().checkItems(category,itemName,itemModel);
       if (findData["status"]) {
         print(findData["status"]);
         print(findData["docID"]);
@@ -34,6 +35,7 @@ class AddItemController {
         if (result) {
           Get.snackbar("Message", "Product updated");
           setDefault();
+          HomePageCtrl.getAllItems();
         } else {
           Get.snackbar("Message", "Failed updated !!");
         }
@@ -45,6 +47,7 @@ class AddItemController {
         if (result) {
           Get.snackbar("Message", "Product Added");
           setDefault();
+          HomePageCtrl.getAllItems();
         } else {
           Get.snackbar("Message", "Failed !!");
         }

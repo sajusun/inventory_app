@@ -7,22 +7,8 @@ import 'package:inventoryapp/presenters/controller/getx_controller.dart';
 class HomePageCtrl{
   static var controller = Get.put(ValController());
   static Future<void> getAllItems() async {
-   // await ProductsModel().getAllItems().then((value) {
-   //   for(var items in value){
-   //     print("""
-   //     ${items.id}
-   //     ${items.itemName}
-   //     ${items.modelName}
-   //     ${items.category}
-   //     ${items.quantity}
-   //
-   //
-   //     """);
-   //   }
-   // });
    List<Products> data=[];
     data = await ProductsModel().getAllItems();
-
    controller.allProductList.assignAll(data);
   }
 

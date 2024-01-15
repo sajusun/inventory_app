@@ -57,10 +57,8 @@ class ProductsModel {
     await db.collection(collectionPath).get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {
         docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
-        print("hello");
       }
     });
-    print("hello2");
     return docList;
   }
 
@@ -68,7 +66,7 @@ class ProductsModel {
   // retrieve Product data from firebase store
   Future<List<Products>> getAllItem() async {
     List<Products> docList = [];
-    await db.collection(collectionPath).snapshots().listen((event) {
+     db.collection(collectionPath).snapshots().listen((event) {
         for (var docSnapshot in event.docs) {
           docList.add(Products(docSnapshot.id, docSnapshot.data()['itemName'],docSnapshot.data()['itemModel'],docSnapshot.data()["category"],docSnapshot.data()["quantity"]));
 
@@ -81,7 +79,7 @@ class ProductsModel {
 
 
 //   finding items in db
-  Future <Map<String, dynamic>> findItems(String category,String itemName,String itemModel) async {
+  Future <Map<String, dynamic>> checkItems(String category,String itemName,String itemModel) async {
     Map<String, dynamic> data={};
     await db.collection(collectionPath).where("category",isEqualTo: category)
         .where("itemName",isEqualTo: itemName)
