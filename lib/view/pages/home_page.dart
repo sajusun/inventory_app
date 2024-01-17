@@ -6,6 +6,7 @@ import 'package:inventoryapp/view/pages/add_product.dart';
 import 'package:inventoryapp/view/pages/catagory.dart';
 import 'package:inventoryapp/view/pages/item_model.dart';
 import 'package:inventoryapp/view/pages/items.dart';
+import 'package:inventoryapp/view/widgets/text_style.dart';
 import '../../presenters/controller/getx_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                    Image.network("https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png",height: 60,),
-                    Text("Company Title",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
+                    const Text("Company Title",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
                   ],
                 ),
               ),
@@ -50,22 +51,22 @@ Container(
     children: [
       TextButton.icon(onPressed: () {
         Get.to(()=>const Category());
-      }, icon: Icon(Icons.arrow_right),
-      label: const Text("Product Category")),
+      }, icon: const Icon(Icons.arrow_right),
+      label:  Text("Product Category",style: textStyle0,)),
 
       TextButton.icon(onPressed: () {
         Get.to(()=> const ProductModel());
-      }, icon: Icon(Icons.arrow_right),
-      label: const Text("Product Model")),
+      }, icon: const Icon(Icons.arrow_right),
+      label:  Text("Product Model",style: textStyle0,)),
 
       TextButton.icon(onPressed: () {
         Get.to(()=> const Items());
-      }, icon: Icon(Icons.arrow_right),
-      label: const Text("Add Items")),
+      }, icon: const Icon(Icons.arrow_right),
+      label:  Text("Add Items",style: textStyle0,)),
       TextButton.icon(onPressed: () {
         Get.to(()=>const AddProduct());
-      }, icon: Icon(Icons.arrow_right),
-          label: const Text("Add Products")),
+      }, icon: const Icon(Icons.arrow_right),
+          label:  Text("Add Products",style: textStyle0,)),
     ],
   ),
 )
