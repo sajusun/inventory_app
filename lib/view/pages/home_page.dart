@@ -34,31 +34,41 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(10.0),
           child: ListView(
             children: [
-              const SizedBox(
+               SizedBox(
                 height: 100,
-                child: Center(child: Text("Drawer Header"),),
+                child: Column(
+                  children: [
+                   Image.network("https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png",height: 60,),
+                    Text("Company Title",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
+                  ],
+                ),
               ),
-              OutlinedButton(onPressed: () {
-               Get.to(()=>const Category());
-                }, child: const Text("Product Category")),
-              const SizedBox(
-                height: 20,
-              ),
-              OutlinedButton(onPressed: () {
-               Get.to(()=> const ProductModel());
-              }, child: const Text("Product Model")),
-              const SizedBox(
-                height: 20,
-              ),
-              OutlinedButton(onPressed: () {
-                Get.to(()=>const AddProduct());
-              }, child: const Text("Add Products")),
-              const SizedBox(
-                height: 20,
-              ),
-              OutlinedButton(onPressed: () {
-                Get.to(()=> const Items());
-              }, child: const Text("Add Items")),
+Container(
+  padding: EdgeInsets.only(left: 30),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      TextButton.icon(onPressed: () {
+        Get.to(()=>const Category());
+      }, icon: Icon(Icons.arrow_right),
+      label: const Text("Product Category")),
+
+      TextButton.icon(onPressed: () {
+        Get.to(()=> const ProductModel());
+      }, icon: Icon(Icons.arrow_right),
+      label: const Text("Product Model")),
+
+      TextButton.icon(onPressed: () {
+        Get.to(()=> const Items());
+      }, icon: Icon(Icons.arrow_right),
+      label: const Text("Add Items")),
+      TextButton.icon(onPressed: () {
+        Get.to(()=>const AddProduct());
+      }, icon: Icon(Icons.arrow_right),
+          label: const Text("Add Products")),
+    ],
+  ),
+)
             ],
           ),
         ),
