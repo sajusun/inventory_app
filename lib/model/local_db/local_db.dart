@@ -1,31 +1,27 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class MyDb{
+class MyDb {
+  late Database database;
+  String category = "category";
+  String itemModel = "itemModel";
+  String itemsName = "itemsName";
+  String products = "products";
 
-   late Database database;
-    String category="category";
-    String itemModel="itemModel";
-    String itemsName="itemsName";
-    String products="products";
-
-
-  MyDb(){
+  MyDb() {
     initDB();
   }
 
-   Future initDB() async {
+  Future initDB() async {
     var databasesPath = await getDatabasesPath();
     String path = join(databasesPath, 'my_products.db');
 
     // print(path); //output /data/user/0/com.testapp.flutter.testapp/databases/demo.db
     //WidgetsFlutterBinding.ensureInitialized();
-    database = await openDatabase(
-        path,
-        version: 1,
-        onCreate: (Database db,int version) {
-          // When creating the db, create the table
-          return db.execute('''
+    database = await openDatabase(path, version: 1,
+        onCreate: (Database db, int version) {
+      // When creating the db, create the table
+      return db.execute('''
 
                   CREATE TABLE IF NOT EXISTS $category( 
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,9 +31,9 @@ class MyDb{
                     //create more table here
                 
                 ''');
-        });
+    });
   }
-  // add a single note method
+// add a single note method
 //
 //   static Future<bool> addCategory(String name){
 //     initDB();
@@ -99,5 +95,4 @@ class MyDb{
 //     return result;
 //
 //   }
-
 }

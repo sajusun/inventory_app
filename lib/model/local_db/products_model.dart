@@ -1,6 +1,6 @@
 import 'package:inventoryapp/model/local_db/local_db.dart';
 
-class CategoryModel {
+class ProductsModel {
   //late Database database;
   MyDb db = MyDb();
 
@@ -27,7 +27,7 @@ class CategoryModel {
   Future<bool> delete(int id) async {
     await db.initDB();
     int result =
-        await db.database.delete(db.category, where: 'id = ?', whereArgs: [id]);
+    await db.database.delete(db.category, where: 'id = ?', whereArgs: [id]);
     if (result > 0) {
       return true;
     } else {
