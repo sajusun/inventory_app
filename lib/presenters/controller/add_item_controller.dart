@@ -56,11 +56,6 @@ class AddItemController {
       Get.snackbar("Message", "Input All Field");
     }
 
-    // Get.snackbar("title", """${controller.itemsNameDropdownValue}
-    // ${controller.categoryDropdownValue}
-    // ${controller.itemModelDropdownValue}
-    // ${quantity.text}
-    // """);
   }
 
   static categoryNameList() async {
