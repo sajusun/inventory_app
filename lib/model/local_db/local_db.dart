@@ -16,8 +16,6 @@ class MyDb {
     var databasesPath = await getDatabasesPath();
     String path = join(databasesPath, 'my_products.db');
 
-    // print(path); //output /data/user/0/com.testapp.flutter.testapp/databases/demo.db
-    //WidgetsFlutterBinding.ensureInitialized();
     database = await openDatabase(path, version: 1,
         onCreate: (Database db, int version) {
       // When creating the db, create the table
