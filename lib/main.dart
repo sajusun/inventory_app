@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/view/pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:inventoryapp/view/pages/login.dart';
 import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  HomePage(title: 'Home'),
+      //home:  HomePage(title: 'Home'),
+      home:  Login(),
+
     );
   }
 }
