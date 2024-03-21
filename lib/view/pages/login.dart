@@ -7,8 +7,8 @@ import 'package:inventoryapp/view/pages/signup.dart';
 class Login extends StatelessWidget {
   Login({super.key});
 
-  TextEditingController email = TextEditingController();
-  TextEditingController pass = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController pass = TextEditingController();
    //double appHeight = Get.height;
   @override
   Widget build(BuildContext context) {
