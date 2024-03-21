@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/view/pages/signup.dart';
@@ -7,9 +9,12 @@ class Login extends StatelessWidget {
 
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
-
+   //double appHeight = Get.height;
   @override
   Widget build(BuildContext context) {
+    print(Get.height.toString());
+    print(Get.width.toString());
+
     return Scaffold(
       appBar: AppBar(title: const Text("userLogin"), centerTitle: true,),
       body: SingleChildScrollView(
@@ -18,7 +23,7 @@ class Login extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
-                child: Container(
+                child: SizedBox(
                     width: 200,
                     height: 150,
                     /*decoration: BoxDecoration(
@@ -42,10 +47,10 @@ class Login extends StatelessWidget {
             decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Password"),
           ),
         ),
-        const SizedBox(height: 20,),
+        const SizedBox(height: 40,),
         ElevatedButton(onPressed: () {}, child: const Text("Login")
         ),
-            const SizedBox(height: 40,),
+            SizedBox(height: Get.height*.3),
             Center(
               child: TextButton(onPressed: (){Get.to(()=> Signup());}, child: const Text("New User? Create Account")),
             )

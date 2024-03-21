@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:inventoryapp/view/pages/login.dart';
 
 @immutable
 class Signup extends StatelessWidget {
@@ -61,7 +64,12 @@ class Signup extends StatelessWidget {
             const SizedBox(height: 20,),
             ElevatedButton(onPressed: () {}, child: const Text("Signup")
             ),
+            SizedBox(height: Get.height*.15),
+            Center(
+              child: TextButton(onPressed: (){Get.to(()=> Login());}, child: const Text("Have an account? Login here")),
+            )
           ],
+
         ),
       ),
     );
