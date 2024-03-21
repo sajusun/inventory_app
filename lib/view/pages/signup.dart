@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:inventoryapp/presenters/controller/signup_controller.dart';
 import 'package:inventoryapp/view/pages/login.dart';
 
 @immutable
 class Signup extends StatelessWidget {
-
-  final TextEditingController authorName = TextEditingController();
-  final TextEditingController companyName = TextEditingController();
-  final TextEditingController email = TextEditingController();
-  final TextEditingController pass = TextEditingController();
+SignupCtrl signupCtrl = SignupCtrl();
 
   Signup({super.key});
 
@@ -23,7 +20,7 @@ class Signup extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
-                child: Container(
+                child: SizedBox(
                     width: 200,
                     height: 150,
                     /*decoration: BoxDecoration(
@@ -34,35 +31,45 @@ class Signup extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: TextFormField(controller: companyName,
+              child: TextFormField(controller: signupCtrl.companyName,
                 style: const TextStyle(height: 1),
                 decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Company/Organization"),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: TextFormField(controller: authorName,
+              child: TextFormField(controller: signupCtrl.authorName,
                 style: const TextStyle(height: 1),
                 decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Author Name"),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: TextFormField(controller: email,
+              child: TextFormField(controller: signupCtrl.email,
                 style: const TextStyle(height: 1),
                 decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Email"),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: TextFormField(controller: pass,
+              child: TextFormField(controller: signupCtrl.pass,
+                obscureText: true,
+                style: const TextStyle(height: 1),
+                decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Password"),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextFormField(controller: signupCtrl.pass2,
                 obscureText: true,
                 style: const TextStyle(height: 1),
                 decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Password"),
               ),
             ),
             const SizedBox(height: 20,),
-            ElevatedButton(onPressed: () {}, child: const Text("Signup")
+            ElevatedButton(onPressed: () {
+              signupCtrl.add();
+            }, child: const Text("Signup")
             ),
             SizedBox(height: Get.height*.15),
             Center(

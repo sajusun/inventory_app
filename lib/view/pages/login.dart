@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/view/pages/signup.dart';
-
+@immutable
 class Login extends StatelessWidget {
   Login({super.key});
 
@@ -12,8 +12,6 @@ class Login extends StatelessWidget {
    //double appHeight = Get.height;
   @override
   Widget build(BuildContext context) {
-    print(Get.height.toString());
-    print(Get.width.toString());
 
     return Scaffold(
       appBar: AppBar(title: const Text("userLogin"), centerTitle: true,),

@@ -28,9 +28,9 @@ class AddItemController {
       };
       var findData = await ProductsModel().checkItems(category,itemName,itemModel);
       if (findData["status"]) {
-        print(findData["status"]);
-        print(findData["docID"]);
-        print(findData["quantity"]);
+        // print(findData["status"]);
+        // print(findData["docID"]);
+        // print(findData["quantity"]);
         var result= await ProductsModel().update(findData["docID"], findData["quantity"]+int.parse(quantity.text));
         if (result) {
           Get.snackbar("Message", "Product updated");
@@ -41,7 +41,7 @@ class AddItemController {
         }
 
       } else {
-        print(findData["status"]);
+      //  print(findData["status"]);
 
         var result = await ProductsModel().add(data);
         if (result) {

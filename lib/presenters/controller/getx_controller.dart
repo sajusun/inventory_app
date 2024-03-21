@@ -19,4 +19,7 @@ class ValController extends GetMaterialController{
   var categoryDropdownHints="Select Category".obs;
   var itemModelDropdownHints="Select Model/Color".obs;
   var itemsNameDropdownHints="Select Items".obs;
+
+  var  signupMgs = "".obs;
+  var loginStatus = false;
 }
