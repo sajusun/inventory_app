@@ -19,17 +19,18 @@ class Login extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 60.0),
+              padding:  EdgeInsets.only(top: Get.height*.05),
               child: Center(
                 child: SizedBox(
-                    width: 200,
-                    height: 150,
+                    width: 160,
+                    height: 100,
                     /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
                     child: Image.asset('lib/images/applogo.jpeg')),
               ),
             ),
+          SizedBox(height: Get.height*.1,),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextFormField(controller: email,
@@ -48,7 +49,7 @@ class Login extends StatelessWidget {
         const SizedBox(height: 40,),
         ElevatedButton(onPressed: () {}, child: const Text("Login")
         ),
-            SizedBox(height: Get.height*.3),
+            SizedBox(height: Get.height*.1),
             Center(
               child: TextButton(onPressed: (){Get.to(()=> Signup());}, child: const Text("New User? Create Account")),
             )

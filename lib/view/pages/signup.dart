@@ -18,11 +18,11 @@ SignupCtrl signupCtrl = SignupCtrl();
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 60.0),
+              padding:  EdgeInsets.only(top: Get.height*.05),
               child: Center(
                 child: SizedBox(
-                    width: 200,
-                    height: 150,
+                    width: 160,
+                    height: 100,
                     /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
@@ -71,7 +71,7 @@ SignupCtrl signupCtrl = SignupCtrl();
               signupCtrl.add();
             }, child: const Text("Signup")
             ),
-            SizedBox(height: Get.height*.15),
+            SizedBox(height: Get.height*.1),
             Center(
               child: TextButton(onPressed: (){Get.to(()=> Login());}, child: const Text("Have an account? Login here")),
             )
