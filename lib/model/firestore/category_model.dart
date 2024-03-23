@@ -1,4 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:inventoryapp/model/firestore/pathLink.dart';
+import 'package:inventoryapp/presenters/controller/getx_controller.dart';
 
 // custom model
 class CatModel {
@@ -9,12 +12,16 @@ class CatModel {
 }
 
 class CategoryModel {
+
   var db = FirebaseFirestore.instance;
   List<CatModel> catList = [];
-  String collectionPath = "/inventory/products/categoryList";
+  //String collectionPath = "/inventory/products/categoryList";
+
+  String collectionPath="${PathLink.userData}/categoryList";
 
   // add category method
   Future<bool> add(dynamic data) async {
+    print(collectionPath);
     var result = false;
     await db.collection(collectionPath).add(data).then((documentSnapshot) {
       result = true;

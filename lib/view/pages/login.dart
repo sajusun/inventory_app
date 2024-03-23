@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inventoryapp/presenters/controller/login_controller.dart';
 import 'package:inventoryapp/view/pages/signup.dart';
 @immutable
 class Login extends StatelessWidget {
   Login({super.key});
 
-  final TextEditingController email = TextEditingController();
-  final TextEditingController pass = TextEditingController();
+LoginCtrl loginCtrl = LoginCtrl();
    //double appHeight = Get.height;
   @override
   Widget build(BuildContext context) {
@@ -33,21 +33,23 @@ class Login extends StatelessWidget {
           SizedBox(height: Get.height*.1,),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: TextFormField(controller: email,
+            child: TextFormField(controller: loginCtrl.email,
               style: const TextStyle(height: 1),
               decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Email"),
             ),
           ),
         Padding(
           padding: const EdgeInsets.all(10.0),
-          child: TextFormField(controller: pass,
+          child: TextFormField(controller: loginCtrl.pass,
             obscureText: true,
             style: const TextStyle(height: 1),
             decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Password"),
           ),
         ),
         const SizedBox(height: 40,),
-        ElevatedButton(onPressed: () {}, child: const Text("Login")
+        ElevatedButton(onPressed: () {
+          loginCtrl.validateData();
+        }, child: const Text("Login")
         ),
             SizedBox(height: Get.height*.1),
             Center(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/model/firestore/product_model.dart';
 import 'package:inventoryapp/presenters/controller/home_page_controller.dart';
+import 'package:inventoryapp/presenters/controller/login_controller.dart';
 import 'package:inventoryapp/view/pages/add_product.dart';
 import 'package:inventoryapp/view/pages/catagory.dart';
 import 'package:inventoryapp/view/pages/item_model.dart';
@@ -25,6 +26,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+
     HomePageCtrl.getAllItems();
     return Scaffold(
 
@@ -57,6 +60,8 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       TextButton.icon(onPressed: () {
                         Get.to(() => const Category());
+                        print("object");
+                        print(HomePageCtrl.controller.tokenId.value);
                       }, icon: const Icon(Icons.arrow_right),
                           label: Text("Product Category", style: textStyle0,)),
 
@@ -81,7 +86,14 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment.bottomRight,
                   onPressed: (){
                   Get.to(() => const AppSettings());
-                }, icon: const Icon(Icons.settings,),)
+                }, icon: const Icon(Icons.settings,),),
+
+                SizedBox(height: 20,),
+                IconButton(
+                  alignment: Alignment.bottomRight,
+                  onPressed: (){
+                    LoginCtrl().logOut();
+                  }, icon: const Icon(Icons.logout,),)
               ],
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 class ValController extends GetMaterialController{
   var mgsStatus="Default Message Here!".obs;
   final buttonFlag=false.obs;
+  var tokenId="".obs;
 
   List<dynamic> dataList=[].obs;
   List<dynamic> allProductList=[].obs;
