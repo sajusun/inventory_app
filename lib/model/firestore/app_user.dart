@@ -13,12 +13,12 @@ class UserProfile {
 
 class AppUser {
   var db = FirebaseFirestore.instance;
-  String collectionPath = PathLink.userProfile;
+  String collectionPath = "${PathLink.userProfile}/profileInfo";
 
   // signup method
   signUp(dynamic data) async {
     var result = "";
-
+print(collectionPath);
     await db.collection(collectionPath).add(data).then((documentSnapshot) {
       result = "success";
     }, onError: (e) {
@@ -33,16 +33,18 @@ class AppUser {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: data['email'],
-        password: data['pass'],
+        password: data['password'],
       );
-      response = signUp(
-          ({
-            "companyName": data['companyName'],
-            "authorName": data['authorName'],
-            "email": data['email'],
-            "password": data['password'],
-            "uid":credential.user?.uid
-          }));
+        signUp(
+            ({
+              "companyName": data['companyName'],
+              "authorName": data['authorName'],
+              "email": data['email'],
+              "password": data['password'],
+              "uid":credential.user?.uid
+            }));
+
+
       //  makeProfile(credential.user!.uid);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
