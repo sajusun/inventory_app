@@ -13,13 +13,14 @@ class UserProfile {
 
 class AppUser {
   var db = FirebaseFirestore.instance;
-  String collectionPath = "${PathLink.userProfile}/profileInfo";
+  String collectionPath = PathLink.userProfile;
 
   // signup method
   signUp(dynamic data) async {
     var result = "";
 print(collectionPath);
-    await db.collection(collectionPath).add(data).then((documentSnapshot) {
+
+    await db.collection(collectionPath).doc(data['uid']).set(data).then((documentSnapshot) {
       result = "success";
     }, onError: (e) {
       result = "failed";
