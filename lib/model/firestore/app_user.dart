@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:inventoryapp/model/firestore/pathLink.dart';
+
+import '../../presenters/controller/getx_controller.dart';
 
 class UserProfile {
   late String uid;
@@ -12,6 +16,7 @@ class UserProfile {
 }
 
 class AppUser {
+  static var controller = Get.put(ValController());
   var db = FirebaseFirestore.instance;
   String collectionPath = PathLink.userProfile;
 
@@ -22,8 +27,10 @@ print(collectionPath);
 
     await db.collection(collectionPath).doc(data['uid']).set(data).then((documentSnapshot) {
       result = "success";
+      controller.buttonFlag.value=false;
     }, onError: (e) {
       result = "failed";
+      controller.buttonFlag.value=false;
     });
     return result;
   }
@@ -50,11 +57,14 @@ print(collectionPath);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         response = "The password provided is too weak.'";
+        controller.buttonFlag.value=false;
         if (kDebugMode) {
           print('The password provided is too weak.');
         }
       } else if (e.code == 'email-already-in-use') {
         response = "The account already exists for that email";
+        controller.buttonFlag.value=false;
+
         if (kDebugMode) {
           print('The account already exists for that email.');
         }

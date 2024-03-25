@@ -67,10 +67,11 @@ SignupCtrl signupCtrl = SignupCtrl();
               ),
             ),
             const SizedBox(height: 20,),
-            ElevatedButton(onPressed: () {
-              signupCtrl.add();
-            }, child: const Text("Signup")
-            ),
+            button(),
+            // ElevatedButton(onPressed: () {
+            //   signupCtrl.add();
+            // }, child: const Text("Signup")
+            // ),
             SizedBox(height: Get.height*.1),
             Center(
               child: TextButton(onPressed: (){Get.to(()=> Login());}, child: const Text("Have an account? Login here")),
@@ -80,5 +81,22 @@ SignupCtrl signupCtrl = SignupCtrl();
         ),
       ),
     );
+  }
+
+  Widget button(){
+
+    return Obx(() {
+      if(SignupCtrl.controller.buttonFlag.value){
+      return  Center(
+          child: CircularProgressIndicator(),
+        );
+      }else{
+        return ElevatedButton(onPressed: () {
+          SignupCtrl.controller.buttonFlag.value=true;
+          signupCtrl.add();
+        }, child: const Text("Signup")
+        );
+      }
+    });
   }
 }

@@ -21,6 +21,7 @@ class SignupCtrl {
         email.text.isEmpty ||
         pass.text.isEmpty) {
       controller.signupMgs.value="Fill All Input Field";
+      controller.buttonFlag.value=false;
       if(kDebugMode){
         print("fill all input");
       }
@@ -60,15 +61,18 @@ class SignupCtrl {
       // //   end off try block
       } else if (!email.text.isEmail) {
         controller.signupMgs.value="input Valid Email !";
+        controller.buttonFlag.value=false;
         if (kDebugMode) {
           print("invalid email");
         }
       } else if (pass.text != pass2.text) {
         controller.signupMgs.value="Password Not Match!";
+        controller.buttonFlag.value=false;
         if (kDebugMode) {
           print("not match");
         }
       } else {
+        controller.buttonFlag.value=false;
         if (kDebugMode) {
           print("program error");
         }
