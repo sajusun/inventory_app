@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inventoryapp/model/firestore/pathLink.dart';
 import 'package:inventoryapp/presenters/controller/getx_controller.dart';
 
+import 'app_user.dart';
+
 // custom model
 class CatModel {
   late String id;
@@ -17,7 +19,7 @@ class CategoryModel {
   List<CatModel> catList = [];
   //String collectionPath = "/inventory/products/categoryList";
 
-  String collectionPath="${PathLink.userData}/categoryList";
+  String collectionPath="${PathLink.userData}${AppUser.currentUser()}/categoryList";
 
   // add category method
   Future<bool> add(dynamic data) async {

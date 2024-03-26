@@ -81,6 +81,9 @@ print(collectionPath);
   userLogin(){
 
   }
+static String currentUser(){
+    return FirebaseAuth.instance.currentUser!.uid;
+  }
 
 
 }

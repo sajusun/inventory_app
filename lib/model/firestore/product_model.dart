@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:inventoryapp/model/firestore/app_user.dart';
 import 'package:inventoryapp/model/firestore/pathLink.dart';
+import 'package:inventoryapp/presenters/controller/getx_controller.dart';
 
 // custom model
 class Products {
@@ -15,7 +18,7 @@ class Products {
 class ProductsModel {
   var db = FirebaseFirestore.instance;
   // String collectionPath = "/inventory/products/productsList";
-  String collectionPath = "${PathLink.userData}/productsList";
+  String collectionPath = "${PathLink.userData}${AppUser.currentUser()}/productsList";
 
   // add product  method
   Future<bool> add(dynamic data) async {
@@ -56,6 +59,7 @@ class ProductsModel {
 
   // retrieve Product data from firebase store
   Future<List<Products>> getAllItems()  async {
+    print("doc ${collectionPath}");
     List<Products> docList = [];
     await db.collection(collectionPath).get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {

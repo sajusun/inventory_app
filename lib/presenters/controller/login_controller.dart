@@ -39,6 +39,8 @@ class LoginCtrl{
   loginStatus(){
     if (FirebaseAuth.instance.currentUser != null) {
       print(FirebaseAuth.instance.currentUser?.uid);
+      controller.tokenId.value=FirebaseAuth.instance.currentUser!.uid;
+      print(" my log id ${FirebaseAuth.instance.currentUser!.uid}");
       controller.buttonFlag.value=false;
       Get.to(()=> const HomePage(title: "Home"));
     }else{

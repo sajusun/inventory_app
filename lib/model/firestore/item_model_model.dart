@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inventoryapp/model/firestore/pathLink.dart';
 
+import 'app_user.dart';
+
 // custom model
 class ItemModel {
   late String id;
@@ -14,7 +16,7 @@ class ProductModel {
   var db = FirebaseFirestore.instance;
   List<ItemModel> modelList = [];
   // String collectionPath = "/inventory/products/itemModelList";
-  String collectionPath = "${PathLink.userData}/itemModelList";
+  String collectionPath = "${PathLink.userData}${AppUser.currentUser()}/itemModelList";
 
   // add model name method
   Future<bool> add(dynamic data) async {
