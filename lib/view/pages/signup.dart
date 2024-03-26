@@ -74,7 +74,7 @@ SignupCtrl signupCtrl = SignupCtrl();
             // ),
             SizedBox(height: Get.height*.1),
             Center(
-              child: TextButton(onPressed: (){Get.to(()=> Login());}, child: const Text("Have an account? Login here")),
+              child: TextButton(onPressed: (){Get.off(()=> Login());}, child: const Text("Have an account? Login here")),
             )
           ],
 

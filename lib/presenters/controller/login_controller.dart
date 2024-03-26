@@ -7,7 +7,7 @@ import 'getx_controller.dart';
 
 class LoginCtrl{
 
-  static var controller = Get.put(ValController());
+   var controller = Get.put(ValController());
   final TextEditingController email = TextEditingController();
   final TextEditingController pass = TextEditingController();
 
@@ -21,7 +21,6 @@ class LoginCtrl{
         );
         print(credential.user?.uid);
         controller.tokenId.value=credential.user!.uid;
-
         loginStatus();
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
@@ -29,8 +28,10 @@ class LoginCtrl{
         } else if (e.code == 'wrong-password') {
           print('Wrong password provided for that user.');
         }
+        controller.buttonFlag.value=false;
       }
     }else{
+      controller.buttonFlag.value=false;
       print("input all valid data");
     }
   }
@@ -38,8 +39,10 @@ class LoginCtrl{
   loginStatus(){
     if (FirebaseAuth.instance.currentUser != null) {
       print(FirebaseAuth.instance.currentUser?.uid);
+      controller.buttonFlag.value=false;
       Get.to(()=> const HomePage(title: "Home"));
     }else{
+      controller.buttonFlag.value=false;
       Get.to(()=>Login());
     }
 

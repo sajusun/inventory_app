@@ -47,10 +47,11 @@ LoginCtrl loginCtrl = LoginCtrl();
           ),
         ),
         const SizedBox(height: 40,),
-        ElevatedButton(onPressed: () {
-          loginCtrl.validateData();
-        }, child: const Text("Login")
-        ),
+        // ElevatedButton(onPressed: () {
+        //   loginCtrl.validateData();
+        // }, child: const Text("Login")
+        // ),
+            button(),
             SizedBox(height: Get.height*.1),
             Center(
               child: TextButton(onPressed: (){Get.to(()=> Signup());}, child: const Text("New User? Create Account")),
@@ -59,5 +60,19 @@ LoginCtrl loginCtrl = LoginCtrl();
         ),
       ),
     );
+  }
+
+  Widget button(){
+    return Obx(()  {
+      if(loginCtrl.controller.buttonFlag.value){
+        return Center(child: CircularProgressIndicator());
+      }else{
+        return  ElevatedButton(onPressed: () {
+          loginCtrl.controller.buttonFlag.value=true;
+    loginCtrl.validateData();
+    }, child: const Text("Login")
+    );
+    }
+    });
   }
 }
