@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/model/firestore/app_user.dart';
 import 'getx_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class SignupCtrl {
   AppUser appUser = AppUser();

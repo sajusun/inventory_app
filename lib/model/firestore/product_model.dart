@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inventoryapp/model/firestore/app_user.dart';
 import 'package:inventoryapp/model/firestore/pathLink.dart';
-import 'package:inventoryapp/presenters/controller/getx_controller.dart';
 
 // custom model
 class Products {
