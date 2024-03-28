@@ -26,11 +26,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     HomePageCtrl.getAllItems();
     return Scaffold(
-
         appBar: AppBar(
           title: Text(widget.title),
           centerTitle: true,
@@ -47,64 +44,117 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Image.network(
                         "https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png",
-                        height: 60,),
-                      const Text("Company Title", style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),)
+                        height: 60,
+                      ),
+                      const Text(
+                        "Company Title",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      )
                     ],
                   ),
                 ),
                 Container(
+                  height: Get.height * .6,
                   padding: const EdgeInsets.only(left: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextButton.icon(onPressed: () {
-                        Get.to(() => const Category());
-                        print("object");
-                        print(HomePageCtrl.controller.tokenId.value);
-                      }, icon: const Icon(Icons.arrow_right),
-                          label: Text("Product Category", style: textStyle0,)),
-
-                      TextButton.icon(onPressed: () {
-                        Get.to(() => const ProductModel());
-                      }, icon: const Icon(Icons.arrow_right),
-                          label: Text("Product Model", style: textStyle0,)),
-
-                      TextButton.icon(onPressed: () {
-                        Get.to(() => const Items());
-                      }, icon: const Icon(Icons.arrow_right),
-                          label: Text("Add Items", style: textStyle0,)),
-                      TextButton.icon(onPressed: () {
-                        Get.to(() => const AddProduct());
-                      }, icon: const Icon(Icons.arrow_right),
-                          label: Text("Add Products", style: textStyle0,)),
+                      TextButton.icon(
+                          onPressed: () {
+                            Get.to(() => const Category());
+                            //print("object");
+                            //   print(HomePageCtrl.controller.tokenId.value);
+                          },
+                          icon: const Icon(Icons.arrow_right),
+                          label: Text(
+                            "Product Category",
+                            style: textStyle0,
+                          )),
+                      TextButton.icon(
+                          onPressed: () {
+                            Get.to(() => const ProductModel());
+                          },
+                          icon: const Icon(Icons.arrow_right),
+                          label: Text(
+                            "Product Model",
+                            style: textStyle0,
+                          )),
+                      TextButton.icon(
+                          onPressed: () {
+                            Get.to(() => const Items());
+                          },
+                          icon: const Icon(Icons.arrow_right),
+                          label: Text(
+                            "Add Items",
+                            style: textStyle0,
+                          )),
+                      TextButton.icon(
+                          onPressed: () {
+                            Get.to(() => const AddProduct());
+                          },
+                          icon: const Icon(Icons.arrow_right),
+                          label: Text(
+                            "Add Products",
+                            style: textStyle0,
+                          )),
                     ],
                   ),
                 ),
 
-                IconButton(
-                  alignment: Alignment.bottomRight,
-                  onPressed: (){
-                  Get.to(() => const AppSettings());
-                }, icon: const Icon(Icons.settings,),),
+                Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                            Text("Settings",style: textStyle0,),
+                          IconButton(
+                            alignment: Alignment.bottomRight,
+                            onPressed: () {
+                              Get.to(() => const AppSettings());
+                            },
+                            icon: const Icon(
+                              Icons.settings,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const Text("Logout",style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold,fontSize: 18),),
+                          IconButton(
+                            alignment: Alignment.bottomRight,
+                            onPressed: () {
+                              LoginCtrl().logOut();
+                            },
+                            icon: const Icon(
+                              Icons.logout,color: Colors.deepOrangeAccent,
+                            ),
+                            tooltip: "Logout",
+                          ),
 
-                SizedBox(height: 20,),
-                IconButton(
-                  alignment: Alignment.bottomRight,
-                  onPressed: (){
-                    LoginCtrl().logOut();
-                  }, icon: const Icon(Icons.logout,),)
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+
               ],
             ),
           ),
         ),
+
         body: SizedBox(
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: allProductList(),
           ),
-        )
-    );
+        ));
   } //   build context
 
 //   all product list function
@@ -120,17 +170,14 @@ class _HomePageState extends State<HomePage> {
                   decoration: BoxDecoration(
                       color: Colors.cyan,
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all()
-                  ),
+                      border: Border.all()),
                   child: Column(
                     children: [
-                      Text(" ${controller.allProductList[index]
-                          .itemName}  - " " ${controller.allProductList[index]
-                          .modelName}"),
-                      Text(" Category : ${controller.allProductList[index]
-                          .category}, " " Available Items : ${controller
-                          .allProductList[index].quantity} "),
-
+                      Text(" ${controller.allProductList[index].itemName}  - "
+                          " ${controller.allProductList[index].modelName}"),
+                      Text(
+                          " Category : ${controller.allProductList[index].category}, "
+                          " Available Items : ${controller.allProductList[index].quantity} "),
                     ],
                   ),
                 ),
@@ -143,7 +190,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget futureView() {
-    return FutureBuilder(future: ProductsModel().getAllItems(),
+    return FutureBuilder(
+        future: ProductsModel().getAllItems(),
         builder: (context, AsyncSnapshot<List<Products>> data) {
           return ListView.builder(
               itemCount: data.data?.length,
@@ -154,15 +202,13 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                         color: Colors.cyan,
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all()
-                    ),
+                        border: Border.all()),
                     child: Column(
                       children: [
-                        Text(" ${data.data?[index].itemName}  - " " ${data
-                            .data?[index].modelName}"),
-                        Text(" Category : ${data.data?[index]
-                            .category}, " " Available Items : ${data
-                            .data?[index].quantity} "),
+                        Text(" ${data.data?[index].itemName}  - "
+                            " ${data.data?[index].modelName}"),
+                        Text(" Category : ${data.data?[index].category}, "
+                            " Available Items : ${data.data?[index].quantity} "),
                       ],
                     ),
                   ),
@@ -170,6 +216,4 @@ class _HomePageState extends State<HomePage> {
               });
         });
   }
-
-
 }
