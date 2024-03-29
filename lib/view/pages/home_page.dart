@@ -38,9 +38,9 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(10.0),
             child: ListView(
               children: [
-             DrawerHeader(child:
-             SizedBox(
-               height: 60,
+             DrawerHeader(
+               child: SizedBox(
+               height: 100,
                child: Column(
                  children: [
                    Image.network(
@@ -64,107 +64,73 @@ class _HomePageState extends State<HomePage> {
                     children: [
 
                       ListTile(
-                        leading: Icon(Icons.category),
-                        title: Text("Product Category"),
+                        leading: const Icon(Icons.category),
+                        title: const Text("Product Category"),
                         onTap: (){Get.to(() => const Category());},
                       ),
                       ListTile(
-                        leading: Icon(Icons.model_training),
-                        title: Text("Product Model"),
+                        leading: const Icon(Icons.model_training),
+                        title: const Text("Product Model"),
                         onTap: (){Get.to(() => const ProductModel());},
                       ),
                       ListTile(
-                        leading: Icon(Icons.edit_note),
-                        title: Text("Add Items"),
+                        leading: const Icon(Icons.edit_note),
+                        title: const Text("Add Items"),
                         onTap: (){Get.to(() => const Items());},
                       ),
                       ListTile(
-                        leading: Icon(Icons.production_quantity_limits_outlined),
-                        title: Text("Add Products"),
+                        leading: const Icon(Icons.production_quantity_limits_outlined),
+                        title: const Text("Add Products"),
                         onTap: (){Get.to(() => const AddProduct());},
                       ),
-                      // TextButton.icon(
-                      //     onPressed: () {
-                      //       Get.to(() => const Category());
-                      //       //print("object");
-                      //       //   print(HomePageCtrl.controller.tokenId.value);
-                      //     },
-                      //     icon: const Icon(Icons.arrow_right),
-                      //     label: Text(
-                      //       "Product Category",
-                      //       style: textStyle0,
-                      //     )),
-                      // TextButton.icon(
-                      //     onPressed: () {
-                      //       Get.to(() => const ProductModel());
-                      //     },
-                      //     icon: const Icon(Icons.arrow_right),
-                      //     label: Text(
-                      //       "Product Model",
-                      //       style: textStyle0,
-                      //     )),
-                      // TextButton.icon(
-                      //     onPressed: () {
-                      //       Get.to(() => const Items());
-                      //     },
-                      //     icon: const Icon(Icons.arrow_right),
-                      //     label: Text(
-                      //       "Add Items",
-                      //       style: textStyle0,
-                      //     )),
-                      // TextButton.icon(
-                      //     onPressed: () {
-                      //       Get.to(() => const AddProduct());
-                      //     },
-                      //     icon: const Icon(Icons.arrow_right),
-                      //     label: Text(
-                      //       "Add Products",
-                      //       style: textStyle0,
-                      //     )),
+
                     ],
                   ),
                 ),
 
                 Container(
-                  child: Column(
-                   // mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ListTile(
-                        leading: Icon(Icons.home_filled),
-                        title: Text("Home",style: textStyle0,),
-                        onTap: (){Get.back();},
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.settings),
-                        title: Text("Settings",style: textStyle0,),
-                        onTap: (){Get.to(() => const AppSettings());},
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.logout),
-                        title: Text("Logout",style: textStyle0,),
-                        onTap: (){LoginCtrl().logOut();},
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.end,
-                      //   children: [
-                      //     const Text("Logout",style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold,fontSize: 18),),
-                      //     IconButton(
-                      //       alignment: Alignment.bottomRight,
-                      //       onPressed: () {
-                      //         LoginCtrl().logOut();
-                      //       },
-                      //       icon: const Icon(
-                      //         Icons.logout,color: Colors.deepOrangeAccent,
-                      //       ),
-                      //       tooltip: "Logout",
-                      //     ),
-                      //
-                      //   ],
-                      // )
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        ListTile(
+                          leading: Icon(Icons.home_filled),
+                          title: Text("Home",style: textStyle0,),
+                          onTap: (){Get.back();},
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.settings),
+                          title: Text("Settings",style: textStyle0,),
+                          onTap: (){Get.to(() => const AppSettings());},
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.logout),
+                          title: Text("Logout",style: textStyle0,),
+                          onTap: (){LoginCtrl().logOut();},
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.end,
+                        //   children: [
+                        //     const Text("Logout",style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold,fontSize: 18),),
+                        //     IconButton(
+                        //       alignment: Alignment.bottomRight,
+                        //       onPressed: () {
+                        //         LoginCtrl().logOut();
+                        //       },
+                        //       icon: const Icon(
+                        //         Icons.logout,color: Colors.deepOrangeAccent,
+                        //       ),
+                        //       tooltip: "Logout",
+                        //     ),
+                        //
+                        //   ],
+                        // )
+                      ],
+                    ),
                   ),
                 ),
 
