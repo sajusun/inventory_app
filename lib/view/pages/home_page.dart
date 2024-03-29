@@ -38,108 +38,132 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(10.0),
             child: ListView(
               children: [
-                SizedBox(
-                  height: 100,
-                  child: Column(
-                    children: [
-                      Image.network(
-                        "https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png",
-                        height: 60,
-                      ),
-                      const Text(
-                        "Company Title",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      )
-                    ],
-                  ),
-                ),
+             DrawerHeader(child:
+             SizedBox(
+               height: 60,
+               child: Column(
+                 children: [
+                   Image.network(
+                     "https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png",
+                     height: 60,
+                   ),
+                   const Text(
+                     "Company Title",
+                     style: TextStyle(
+                         fontWeight: FontWeight.bold, fontSize: 20),
+                   )
+                 ],
+               ),
+             ),
+             ),
                 Container(
-                  height: Get.height * .6,
+                  height: Get.height * .4,
                   padding: const EdgeInsets.only(left: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextButton.icon(
-                          onPressed: () {
-                            Get.to(() => const Category());
-                            //print("object");
-                            //   print(HomePageCtrl.controller.tokenId.value);
-                          },
-                          icon: const Icon(Icons.arrow_right),
-                          label: Text(
-                            "Product Category",
-                            style: textStyle0,
-                          )),
-                      TextButton.icon(
-                          onPressed: () {
-                            Get.to(() => const ProductModel());
-                          },
-                          icon: const Icon(Icons.arrow_right),
-                          label: Text(
-                            "Product Model",
-                            style: textStyle0,
-                          )),
-                      TextButton.icon(
-                          onPressed: () {
-                            Get.to(() => const Items());
-                          },
-                          icon: const Icon(Icons.arrow_right),
-                          label: Text(
-                            "Add Items",
-                            style: textStyle0,
-                          )),
-                      TextButton.icon(
-                          onPressed: () {
-                            Get.to(() => const AddProduct());
-                          },
-                          icon: const Icon(Icons.arrow_right),
-                          label: Text(
-                            "Add Products",
-                            style: textStyle0,
-                          )),
+
+                      ListTile(
+                        leading: Icon(Icons.category),
+                        title: Text("Product Category"),
+                        onTap: (){Get.to(() => const Category());},
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.model_training),
+                        title: Text("Product Model"),
+                        onTap: (){Get.to(() => const ProductModel());},
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.edit_note),
+                        title: Text("Add Items"),
+                        onTap: (){Get.to(() => const Items());},
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.production_quantity_limits_outlined),
+                        title: Text("Add Products"),
+                        onTap: (){Get.to(() => const AddProduct());},
+                      ),
+                      // TextButton.icon(
+                      //     onPressed: () {
+                      //       Get.to(() => const Category());
+                      //       //print("object");
+                      //       //   print(HomePageCtrl.controller.tokenId.value);
+                      //     },
+                      //     icon: const Icon(Icons.arrow_right),
+                      //     label: Text(
+                      //       "Product Category",
+                      //       style: textStyle0,
+                      //     )),
+                      // TextButton.icon(
+                      //     onPressed: () {
+                      //       Get.to(() => const ProductModel());
+                      //     },
+                      //     icon: const Icon(Icons.arrow_right),
+                      //     label: Text(
+                      //       "Product Model",
+                      //       style: textStyle0,
+                      //     )),
+                      // TextButton.icon(
+                      //     onPressed: () {
+                      //       Get.to(() => const Items());
+                      //     },
+                      //     icon: const Icon(Icons.arrow_right),
+                      //     label: Text(
+                      //       "Add Items",
+                      //       style: textStyle0,
+                      //     )),
+                      // TextButton.icon(
+                      //     onPressed: () {
+                      //       Get.to(() => const AddProduct());
+                      //     },
+                      //     icon: const Icon(Icons.arrow_right),
+                      //     label: Text(
+                      //       "Add Products",
+                      //       style: textStyle0,
+                      //     )),
                     ],
                   ),
                 ),
 
                 Container(
                   child: Column(
+                   // mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                            Text("Settings",style: textStyle0,),
-                          IconButton(
-                            alignment: Alignment.bottomRight,
-                            onPressed: () {
-                              Get.to(() => const AppSettings());
-                            },
-                            icon: const Icon(
-                              Icons.settings,
-                            ),
-                          ),
-                        ],
+                      ListTile(
+                        leading: Icon(Icons.home_filled),
+                        title: Text("Home",style: textStyle0,),
+                        onTap: (){Get.back();},
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text("Settings",style: textStyle0,),
+                        onTap: (){Get.to(() => const AppSettings());},
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.logout),
+                        title: Text("Logout",style: textStyle0,),
+                        onTap: (){LoginCtrl().logOut();},
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const Text("Logout",style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold,fontSize: 18),),
-                          IconButton(
-                            alignment: Alignment.bottomRight,
-                            onPressed: () {
-                              LoginCtrl().logOut();
-                            },
-                            icon: const Icon(
-                              Icons.logout,color: Colors.deepOrangeAccent,
-                            ),
-                            tooltip: "Logout",
-                          ),
-
-                        ],
-                      )
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.end,
+                      //   children: [
+                      //     const Text("Logout",style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold,fontSize: 18),),
+                      //     IconButton(
+                      //       alignment: Alignment.bottomRight,
+                      //       onPressed: () {
+                      //         LoginCtrl().logOut();
+                      //       },
+                      //       icon: const Icon(
+                      //         Icons.logout,color: Colors.deepOrangeAccent,
+                      //       ),
+                      //       tooltip: "Logout",
+                      //     ),
+                      //
+                      //   ],
+                      // )
                     ],
                   ),
                 ),
