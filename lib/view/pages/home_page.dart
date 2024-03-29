@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:inventoryapp/model/firestore/product_model.dart';
 import 'package:inventoryapp/presenters/controller/home_page_controller.dart';
 import 'package:inventoryapp/presenters/controller/login_controller.dart';
+import 'package:inventoryapp/presenters/controller/user_profile.dart';
 import 'package:inventoryapp/view/pages/add_product.dart';
 import 'package:inventoryapp/view/pages/catagory.dart';
 import 'package:inventoryapp/view/pages/item_model.dart';
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     HomePageCtrl.getAllItems();
     return Scaffold(
         appBar: AppBar(
@@ -39,6 +41,9 @@ class _HomePageState extends State<HomePage> {
             child: ListView(
               children: [
              DrawerHeader(
+               decoration: BoxDecoration(
+                 color: Colors.grey
+               ),
                child: SizedBox(
                height: 100,
                child: Column(

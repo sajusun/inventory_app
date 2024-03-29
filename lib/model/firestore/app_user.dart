@@ -23,7 +23,7 @@ class AppUser {
   // signup method
   signUp(dynamic data) async {
     var result = "";
-print(collectionPath);
+//print(collectionPath);
 
     await db.collection(collectionPath).doc(data['uid']).set(data).then((documentSnapshot) {
       result = "success";
@@ -85,5 +85,11 @@ static String currentUser(){
     return FirebaseAuth.instance.currentUser!.uid;
   }
 
+  userProfile(String docID) async {
+    await db.collection(collectionPath).doc(docID).get().then((query) {
+   //   stockValue = query.data()!["stockItems"];
+      print(query.data());
+  });
+        }
 
 }
