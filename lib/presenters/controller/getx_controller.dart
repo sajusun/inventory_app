@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:inventoryapp/model/firestore/app_user.dart';
 
 class ValController extends GetMaterialController{
   var uid="".obs;
@@ -25,4 +26,6 @@ class ValController extends GetMaterialController{
 
   var  signupMgs = "".obs;
   var loginStatus = false;
+
+late UserProfile userProfile;
 }

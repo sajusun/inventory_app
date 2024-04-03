@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:inventoryapp/model/firestore/app_user.dart';
+import 'package:inventoryapp/presenters/controller/user_profile.dart';
 import 'package:inventoryapp/view/pages/home_page.dart';
 import 'package:inventoryapp/view/pages/login.dart';
 import 'getx_controller.dart';
 
 class LoginCtrl{
+  // UserProfile userProfile=UserProfile();
 
    var controller = Get.put(ValController());
   final TextEditingController email = TextEditingController();
@@ -42,7 +45,9 @@ class LoginCtrl{
       controller.tokenId.value=FirebaseAuth.instance.currentUser!.uid;
       print(" my log id ${FirebaseAuth.instance.currentUser!.uid}");
       controller.buttonFlag.value=false;
+      UserProfileCtrl().getProfile();
       Get.to(()=> const HomePage(title: "Home"));
+
     }else{
       controller.buttonFlag.value=false;
       Get.to(()=>Login());

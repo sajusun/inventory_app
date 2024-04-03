@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inventoryapp/model/firestore/app_user.dart';
 import 'package:inventoryapp/model/firestore/product_model.dart';
 import 'package:inventoryapp/presenters/controller/home_page_controller.dart';
 import 'package:inventoryapp/presenters/controller/login_controller.dart';
@@ -24,6 +25,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var controller = Get.put(ValController());
+  UserProfileCtrl upc=UserProfileCtrl();
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +54,8 @@ class _HomePageState extends State<HomePage> {
                      "https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png",
                      height: 60,
                    ),
-                   const Text(
-                     "Company Title",
+                    Text(
+                 UserProfileCtrl().getProfile().authName,
                      style: TextStyle(
                          fontWeight: FontWeight.bold, fontSize: 20),
                    )
