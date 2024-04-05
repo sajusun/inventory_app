@@ -24,8 +24,10 @@ class ValController extends GetMaterialController{
   var itemModelDropdownHints="Select Model/Color".obs;
   var itemsNameDropdownHints="Select Items".obs;
 
+// signIn signup var
   var  signupMgs = "".obs;
   var loginStatus = false;
+  var loginAlert="".obs;
 
  // user profile var
  var authorName="".obs;

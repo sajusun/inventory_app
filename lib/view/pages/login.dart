@@ -30,6 +30,9 @@ LoginCtrl loginCtrl = LoginCtrl();
                     child: Image.asset('lib/images/applogo.jpeg')),
               ),
             ),
+          Obx(() {
+            return Center(child: Text(loginCtrl.controller.loginAlert.value));
+          }),
           SizedBox(height: Get.height*.1,),
           Padding(
             padding: const EdgeInsets.all(10.0),
