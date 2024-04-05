@@ -10,7 +10,7 @@ import '../../presenters/controller/getx_controller.dart';
 class UserProfile {
   late String uid;
   late String companyName;
-   String authorName="kjk";
+  late String authorName="";
   late String email;
   late String pass;
 }
@@ -85,23 +85,25 @@ static String currentUser(){
     return FirebaseAuth.instance.currentUser!.uid;
   }
 
-  Future<UserProfile> userProfile(String docID) async {
+  Future<dynamic> userProfile(String docID) async {
     UserProfile userProfile =UserProfile();
+    dynamic data;
     await db.collection(collectionPath).doc(docID).get().then((query) {
    //   stockValue = query.data()!["stockItems"];
       if(query.data()!.isNotEmpty) {
-        userProfile.uid = query.data()?['uid'];
-        userProfile.authorName = query.data()?['authorName'];
-        userProfile.companyName = query.data()?['companyName'];
-        userProfile.email = query.data()?['email'];
-        userProfile.pass = query.data()?['password'];
+        // userProfile.uid = query.data()?['uid'];
+        // userProfile.authorName = query.data()?['authorName'];
+        // userProfile.companyName = query.data()?['companyName'];
+        // userProfile.email = query.data()?['email'];
+        // userProfile.pass = query.data()?['password'];
+        data=query.data();
       }
-      print("userprofile");
-      print(collectionPath);
-      print(query.data()?['uid']);
+      // print("userprofile");
+      // print(collectionPath);
+      // print(query.data()?['uid']);
   });
     //controller.userProfile=userProfile;
-    return userProfile;
+    return data;
         }
 
 }

@@ -28,8 +28,14 @@ class _HomePageState extends State<HomePage> {
   UserProfileCtrl upc=UserProfileCtrl();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    upc.getProfile();
+  }
+  @override
   Widget build(BuildContext context) {
-
+upc.getProfile();
     HomePageCtrl.getAllItems();
     return Scaffold(
         appBar: AppBar(
@@ -54,11 +60,13 @@ class _HomePageState extends State<HomePage> {
                      "https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png",
                      height: 60,
                    ),
-                    Text(
-                 UserProfileCtrl().getProfile().authName,
-                     style: TextStyle(
-                         fontWeight: FontWeight.bold, fontSize: 20),
-                   )
+                    Obx(()  {
+                      return  Text(
+                        controller.auth.value.toString(),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      );
+                    })
                  ],
                ),
              ),
