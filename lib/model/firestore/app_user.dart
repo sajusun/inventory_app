@@ -9,9 +9,9 @@ import '../../presenters/controller/getx_controller.dart';
 
 class UserProfile {
   late String uid;
-  late String companyName;
-  late String authorName="";
-  late String email;
+   String companyName="";
+   String authorName="";
+   String email="";
   late String pass;
 }
 

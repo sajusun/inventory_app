@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventoryapp/model/firestore/app_user.dart';
 import 'package:inventoryapp/model/firestore/product_model.dart';
 import 'package:inventoryapp/presenters/controller/home_page_controller.dart';
 import 'package:inventoryapp/presenters/controller/login_controller.dart';
@@ -13,33 +12,22 @@ import 'package:inventoryapp/view/widgets/text_style.dart';
 import '../../presenters/controller/getx_controller.dart';
 import 'app_settings.dart';
 
+
 @immutable
-class HomePage extends StatefulWidget {
-  final String title;
+class HomePage extends StatelessWidget{
+  final  controller = Get.put(ValController());
+  final UserProfileCtrl upc=UserProfileCtrl();
 
-  const HomePage({super.key, required this.title});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  var controller = Get.put(ValController());
-  UserProfileCtrl upc=UserProfileCtrl();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+   HomePage() {
     upc.getProfile();
   }
   @override
   Widget build(BuildContext context) {
-upc.getProfile();
+
     HomePageCtrl.getAllItems();
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: const Text("Home"),
           centerTitle: true,
         ),
         drawer: Drawer(
@@ -48,29 +36,60 @@ upc.getProfile();
             padding: const EdgeInsets.all(10.0),
             child: ListView(
               children: [
-             DrawerHeader(
-               decoration: BoxDecoration(
-                 color: Colors.grey
-               ),
-               child: SizedBox(
-               height: 100,
-               child: Column(
-                 children: [
-                   Image.network(
-                     "https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png",
-                     height: 60,
-                   ),
-                    Obx(()  {
-                      return  Text(
-                        controller.auth.value.toString(),
+                UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.grey
+                  ),
+                    accountName: Obx(() {
+                      return
+                      Text(
+                        upc.controller.authorName.value,
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.white
+                        ),
                       );
-                    })
-                 ],
-               ),
-             ),
-             ),
+                    }),
+                    accountEmail: Obx(() {
+                      return
+                        Text(
+                          upc.controller.email.value,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white
+                          ),
+                        );
+                    }),
+                  currentAccountPicture:
+                        Image.network(
+                          upc.controller.profileImage.value,
+                          height: 60,
+                        ),onDetailsPressed: (){},
+                ),
+             // DrawerHeader(
+             //   decoration: BoxDecoration(
+             //     color: Colors.grey
+             //   ),
+             //   child: SizedBox(
+             //   height: 100,
+             //   child: Column(
+             //     children: [
+             //       Image.network(
+             //         "https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png",
+             //         height: 60,
+             //       ),
+             //        Text(
+             //            upc.controller.up.companyName,
+             //            style: const TextStyle(
+             //                fontWeight: FontWeight.bold, fontSize: 20),
+             //          ),
+             //
+             //     ],
+             //   ),
+             // ),
+             // ),
                 Container(
                   height: Get.height * .4,
                   padding: const EdgeInsets.only(left: 30),
@@ -127,23 +146,7 @@ upc.getProfile();
                         const SizedBox(
                           height: 20,
                         ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   children: [
-                        //     const Text("Logout",style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold,fontSize: 18),),
-                        //     IconButton(
-                        //       alignment: Alignment.bottomRight,
-                        //       onPressed: () {
-                        //         LoginCtrl().logOut();
-                        //       },
-                        //       icon: const Icon(
-                        //         Icons.logout,color: Colors.deepOrangeAccent,
-                        //       ),
-                        //       tooltip: "Logout",
-                        //     ),
-                        //
-                        //   ],
-                        // )
+
                       ],
                     ),
                   ),

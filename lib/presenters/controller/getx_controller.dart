@@ -1,6 +1,5 @@
 
 import 'package:get/get.dart';
-import 'package:inventoryapp/model/firestore/app_user.dart';
 
 class ValController extends GetMaterialController{
   var uid="".obs;
@@ -28,9 +27,11 @@ class ValController extends GetMaterialController{
   var  signupMgs = "".obs;
   var loginStatus = false;
 
-  Map map ={};
-  var userProfile=<String,dynamic>{}.obs;
- //UserProfile userProfile=UserProfile();
-var auth="".obs;
+ // user profile var
+ var authorName="".obs;
+  var email="".obs;
+  var companyName="".obs;
+  var profileImage= "https://w7.pngwing.com/pngs/487/46/png-transparent-logo-black-and-white-brand-letter-d-white-text-rectangle.png".obs;
+
 
 }
