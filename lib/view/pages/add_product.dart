@@ -156,7 +156,13 @@ class AddProduct extends StatelessWidget {
             ),
             ElevatedButton(onPressed: (){
               AddItemController.addItem();
-            }, child: const Text("Submit"))
+            },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.cyan,
+                    foregroundColor: Colors.white,
+                    fixedSize: const Size(100, 40),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
+                ),child: const Text("Submit"))
           ],
         ),
       )

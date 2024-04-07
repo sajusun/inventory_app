@@ -23,7 +23,6 @@ class AppUser {
   // signup method
   signUp(dynamic data) async {
     var result = "";
-//print(collectionPath);
 
     await db.collection(collectionPath).doc(data['uid']).set(data).then((documentSnapshot) {
       result = "success";
@@ -36,7 +35,7 @@ class AppUser {
   }
 
   authRegister(data) async {
-    String? response = "";
+    String response = "";
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -52,7 +51,6 @@ class AppUser {
               "uid":credential.user?.uid
             }));
 
-
       //  makeProfile(credential.user!.uid);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -64,6 +62,7 @@ class AppUser {
       } else if (e.code == 'email-already-in-use') {
         response = "The account already exists for that email";
         controller.buttonFlag.value=false;
+        //controller.userAlert.value="The Email already exists!";
 
         if (kDebugMode) {
           print('The account already exists for that email.');
