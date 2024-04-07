@@ -26,8 +26,8 @@ class ValController extends GetMaterialController{
 
 // signIn signup var
   var  signupMgs = "".obs;
-  var loginStatus = false;
-  var loginAlert="".obs;
+  var loginStatus = false.obs;
+  var userAlert="".obs;
 
  // user profile var
  var authorName="".obs;

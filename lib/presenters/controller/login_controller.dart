@@ -11,7 +11,7 @@ import 'getx_controller.dart';
 class LoginCtrl {
   // UserProfile userProfile=UserProfile();
 
-  var controller = Get.put(ValController());
+  var controller = ValController();
   final TextEditingController email = TextEditingController();
   final TextEditingController pass = TextEditingController();
 
@@ -21,6 +21,7 @@ class LoginCtrl {
         final credential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email.text, password: pass.text);
         //  print(credential.user?.uid);
+        controller.userAlert.value ="";
         controller.tokenId.value = credential.user!.uid;
         loginStatus();
       } on FirebaseAuthException catch (e) {
@@ -34,11 +35,11 @@ class LoginCtrl {
           }
         }
         controller.buttonFlag.value = false;
-        controller.loginAlert.value = "User Not Found!";
+        controller.userAlert.value = "User Not Found!";
       }
     } else {
       controller.buttonFlag.value = false;
-      controller.loginAlert.value = "Input all Valid Data!";
+      controller.userAlert.value = "Input all Valid Data!";
       if (kDebugMode) {
         print("input all valid data");
       }

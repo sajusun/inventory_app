@@ -7,7 +7,7 @@ import 'getx_controller.dart';
 class SignupCtrl {
   AppUser appUser = AppUser();
 
-  static var controller = Get.put(ValController());
+   var controller = ValController();
   final TextEditingController authorName = TextEditingController();
   final TextEditingController companyName = TextEditingController();
   final TextEditingController email = TextEditingController();
@@ -19,7 +19,7 @@ class SignupCtrl {
         authorName.text.isEmpty ||
         email.text.isEmpty ||
         pass.text.isEmpty) {
-      controller.signupMgs.value="Fill All Input Field";
+      controller.userAlert.value="Fill All Input Field";
       controller.buttonFlag.value=false;
       if(kDebugMode){
         print("fill all input");
@@ -29,12 +29,13 @@ class SignupCtrl {
         if(kDebugMode){
           print("all field are filled");
         }
-        appUser.authRegister( ({
+        var response=appUser.authRegister( ({
           "companyName": companyName.text,
           "authorName": authorName.text,
           "email": email.text,
           "password": pass.text,
         }));
+        controller.userAlert.value=response;
       //   try {
       //     final credential =
       //         await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -59,13 +60,13 @@ class SignupCtrl {
       //   }
       // //   end off try block
       } else if (!email.text.isEmail) {
-        controller.signupMgs.value="input Valid Email !";
+        controller.userAlert.value="input Valid Email !";
         controller.buttonFlag.value=false;
         if (kDebugMode) {
           print("invalid email");
         }
       } else if (pass.text != pass2.text) {
-        controller.signupMgs.value="Password Not Match!";
+        controller.userAlert.value="Password Not Match!";
         controller.buttonFlag.value=false;
         if (kDebugMode) {
           print("not match");

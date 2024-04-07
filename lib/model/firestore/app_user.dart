@@ -43,7 +43,7 @@ class AppUser {
         email: data['email'],
         password: data['password'],
       );
-        signUp(
+      response=  signUp(
             ({
               "companyName": data['companyName'],
               "authorName": data['authorName'],

@@ -8,11 +8,11 @@ import 'package:inventoryapp/view/pages/signup.dart';
 class Login extends StatelessWidget {
   Login({super.key});
 
-LoginCtrl loginCtrl = LoginCtrl();
+final LoginCtrl loginCtrl = LoginCtrl();
    //double appHeight = Get.height;
   @override
   Widget build(BuildContext context) {
-
+loginCtrl.controller.userAlert.value="";
     return Scaffold(
       appBar: AppBar(title: const Text("userLogin"), centerTitle: true,),
       body: SingleChildScrollView(
@@ -30,10 +30,8 @@ LoginCtrl loginCtrl = LoginCtrl();
                     child: Image.asset('lib/images/applogo.jpeg')),
               ),
             ),
-          Obx(() {
-            return Center(child: Text(loginCtrl.controller.loginAlert.value));
-          }),
-          SizedBox(height: Get.height*.1,),
+
+          SizedBox(height: Get.height*.08,),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextFormField(controller: loginCtrl.email,
@@ -49,15 +47,15 @@ LoginCtrl loginCtrl = LoginCtrl();
             decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Password"),
           ),
         ),
-        const SizedBox(height: 40,),
-        // ElevatedButton(onPressed: () {
-        //   loginCtrl.validateData();
-        // }, child: const Text("Login")
-        // ),
+         SizedBox(height: Get.height*.05,),
+            Obx(() {
+              return Center(child: Text(loginCtrl.controller.userAlert.value));
+            }),
+            SizedBox(height: Get.height*.05,),
             button(),
             SizedBox(height: Get.height*.1),
             Center(
-              child: TextButton(onPressed: (){Get.to(()=> Signup());}, child: const Text("New User? Create Account")),
+              child: TextButton(onPressed: (){Get.to(()=> Signup());loginCtrl.controller.userAlert.value="";}, child: const Text("New User? Create Account")),
             )
           ],
         ),
@@ -68,12 +66,21 @@ LoginCtrl loginCtrl = LoginCtrl();
   Widget button(){
     return Obx(()  {
       if(loginCtrl.controller.buttonFlag.value){
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       }else{
         return  ElevatedButton(onPressed: () {
           loginCtrl.controller.buttonFlag.value=true;
     loginCtrl.validateData();
-    }, child: const Text("Login")
+    },
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.cyan,
+                foregroundColor: Colors.white,
+                fixedSize: const Size(200, 40),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
+            ),
+            child: const Text("Login",style: TextStyle(
+              fontWeight: FontWeight.bold,fontSize: 18
+            ),)
     );
     }
     });
