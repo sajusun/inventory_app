@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:inventoryapp/presenters/controller/login_controller.dart';
 import 'package:inventoryapp/presenters/controller/signup_controller.dart';
 import 'package:inventoryapp/view/pages/login.dart';
+
+import '../../presenters/controller/getx_controller.dart';
 
 @immutable
 class Signup extends StatelessWidget {
 final SignupCtrl signupCtrl = SignupCtrl();
+final controller = Get.put(ValController());
 
   Signup({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    signupCtrl.controller.userAlert.value="";
+    controller.userAlert.value="";
 
     return Scaffold(
       appBar: AppBar(title: const Text("Registration"), centerTitle: true,),
@@ -72,7 +72,7 @@ final SignupCtrl signupCtrl = SignupCtrl();
             ),
              SizedBox(height: Get.height*0.03,),
             Obx(() {
-              return Center(child: Text(signupCtrl.controller.userAlert.value));
+              return Center(child: Text(controller.userAlert.value));
             }),
             SizedBox(height: Get.height*0.01,),
             button(),
@@ -91,19 +91,19 @@ final SignupCtrl signupCtrl = SignupCtrl();
   Widget button(){
 
     return Obx(() {
-      if(signupCtrl.controller.loginStatus.value){
+      if(controller.loginStatus.value){
       return  const Center(
           child: CircularProgressIndicator(),
         );
       }else{
         return ElevatedButton(onPressed: () {
-          signupCtrl.controller.buttonFlag.value=true;
+          controller.buttonFlag.value=true;
           signupCtrl.add();
         },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.cyan,
             foregroundColor: Colors.white,
-            fixedSize: Size(260, 45),
+            fixedSize: const Size(260, 45),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
           ),
             child:  const Text("Signup",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),

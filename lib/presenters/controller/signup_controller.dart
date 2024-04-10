@@ -7,7 +7,7 @@ import 'getx_controller.dart';
 class SignupCtrl {
   AppUser appUser = AppUser();
 
-   var controller = ValController();
+   var controller =Get.put(ValController());
   final TextEditingController authorName = TextEditingController();
   final TextEditingController companyName = TextEditingController();
   final TextEditingController email = TextEditingController();
@@ -26,16 +26,13 @@ class SignupCtrl {
       }
     } else {
       if (email.text.isEmail && pass.text == pass2.text) {
-        if(kDebugMode){
-          print("all field are filled");
-        }
-        var response=appUser.authRegister( ({
+        appUser.authRegister( ({
           "companyName": companyName.text,
           "authorName": authorName.text,
           "email": email.text,
           "password": pass.text,
         }));
-        controller.userAlert.value=response;
+        // controller.userAlert.value=response;
       //   try {
       //     final credential =
       //         await FirebaseAuth.instance.createUserWithEmailAndPassword(
