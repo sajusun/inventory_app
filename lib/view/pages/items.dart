@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/controller/items_controller.dart';
+import 'package:inventoryapp/view/widgets/button_style.dart';
 
 
 class Items extends StatelessWidget{
@@ -115,11 +116,13 @@ class Items extends StatelessWidget{
                                   ItemsCtrl.controller.dataList[index].id);
                               ItemsCtrl.uiUpdate();
                             },
+                            style: btnSm,
                             child: const Text("Delete")),
                         cancel: OutlinedButton(
                             onPressed: () {
                               Get.back();
                             },
+                            style: btnSm,
                             child: const Text("Cancel")),
                       );
                     },

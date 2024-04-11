@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/controller/signup_controller.dart';
 import 'package:inventoryapp/view/pages/login.dart';
+import 'package:inventoryapp/view/widgets/button_style.dart';
 
 import '../../presenters/controller/getx_controller.dart';
 
@@ -91,7 +92,7 @@ final controller = Get.put(ValController());
   Widget button(){
 
     return Obx(() {
-      if(controller.loginStatus.value){
+      if(controller.buttonFlag.value){
       return  const Center(
           child: CircularProgressIndicator(),
         );
@@ -100,12 +101,7 @@ final controller = Get.put(ValController());
           controller.buttonFlag.value=true;
           signupCtrl.add();
         },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.cyan,
-            foregroundColor: Colors.white,
-            fixedSize: const Size(260, 45),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
-          ),
+          style: btnMd,
             child:  const Text("Signup",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
         );
       }

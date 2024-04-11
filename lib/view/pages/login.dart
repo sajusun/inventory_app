@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/controller/login_controller.dart';
 import 'package:inventoryapp/view/pages/signup.dart';
+import 'package:inventoryapp/view/widgets/button_style.dart';
 @immutable
 class Login extends StatelessWidget {
   Login({super.key});
@@ -72,12 +73,7 @@ loginCtrl.controller.userAlert.value="";
           loginCtrl.controller.buttonFlag.value=true;
     loginCtrl.validateData();
     },
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.cyan,
-                foregroundColor: Colors.white,
-                fixedSize: const Size(200, 40),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
-            ),
+            style: btnSm,
             child: const Text("Login",style: TextStyle(
               fontWeight: FontWeight.bold,fontSize: 18
             ),)
