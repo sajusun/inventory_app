@@ -19,7 +19,7 @@ final controller = Get.put(ValController());
     controller.userAlert.value="";
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Registration"), centerTitle: true,),
+      appBar: AppBar(title:  Text("Signup",style: textMd,), centerTitle: true,),
       body: SingleChildScrollView(
         child: Column(
           children: [

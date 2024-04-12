@@ -16,7 +16,7 @@ final LoginCtrl loginCtrl = LoginCtrl();
   Widget build(BuildContext context) {
 loginCtrl.controller.userAlert.value="";
     return Scaffold(
-      appBar: AppBar(title: const Text("userLogin"), centerTitle: true,),
+      appBar: AppBar(title:  Text("Login",style: textMd,), centerTitle: true,),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -29,7 +29,7 @@ loginCtrl.controller.userAlert.value="";
                     /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('lib/images/applogo.jpeg')),
+                    child: Image.asset('lib/images/USER.png')),
               ),
             ),
 

@@ -129,17 +129,17 @@ class HomePage extends StatelessWidget{
                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         ListTile(
-                          leading: Icon(Icons.home_filled),
+                          leading: const Icon(Icons.home_filled),
                           title: Text("Home",style: textStyle0,),
                           onTap: (){Get.back();},
                         ),
                         ListTile(
-                          leading: Icon(Icons.settings),
+                          leading: const Icon(Icons.settings),
                           title: Text("Settings",style: textStyle0,),
                           onTap: (){Get.to(() => const AppSettings());},
                         ),
                         ListTile(
-                          leading: Icon(Icons.logout),
+                          leading: const Icon(Icons.logout),
                           title: Text("Logout",style: textStyle0,),
                           onTap: (){LoginCtrl().logOut();},
                         ),
