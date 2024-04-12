@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/controller/login_controller.dart';
 import 'package:inventoryapp/view/pages/signup.dart';
 import 'package:inventoryapp/view/widgets/button_style.dart';
+import 'package:inventoryapp/view/widgets/text_style.dart';
 @immutable
 class Login extends StatelessWidget {
   Login({super.key});
@@ -73,10 +74,11 @@ loginCtrl.controller.userAlert.value="";
           loginCtrl.controller.buttonFlag.value=true;
     loginCtrl.validateData();
     },
-            style: btnSm,
-            child: const Text("Login",style: TextStyle(
-              fontWeight: FontWeight.bold,fontSize: 18
-            ),)
+            style: btnMd,
+            child:  Text("Login",
+              style: textSm,
+            )
+
     );
     }
     });

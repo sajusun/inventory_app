@@ -17,6 +17,12 @@ final btnMd= ElevatedButton.styleFrom(
 final btnSm= ElevatedButton.styleFrom(
     backgroundColor: Colors.cyan,
     foregroundColor: Colors.white,
-    fixedSize: const Size(120, 45),
+    fixedSize: const Size(100, 45),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
+);
+final btnDanger= ElevatedButton.styleFrom(
+    backgroundColor: const Color(0xC5DC255C),
+    foregroundColor: Colors.white,
+    fixedSize: const Size(100, 45),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
 );

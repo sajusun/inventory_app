@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/controller/category_controller.dart';
+import 'package:inventoryapp/view/widgets/button_style.dart';
 
 class Category extends StatefulWidget {
   const Category({super.key});
@@ -96,11 +97,13 @@ class _CategoryState extends State<Category> {
                                   txtEditController.text);
                               CategoryCtrl.uiUpdate();
                             },
+                            style: btnSm,
                             child: const Text("Update")),
                         cancel: OutlinedButton(
                             onPressed: () {
                               Get.back();
                             },
+                            style: btnSm,
                             child: const Text("Cancel")),
                       ); // end getX dialog box
                     },
@@ -120,11 +123,13 @@ class _CategoryState extends State<Category> {
                                   CategoryCtrl.controller.dataList[index].id);
                               CategoryCtrl.uiUpdate();
                             },
+                            style: btnDanger,
                             child: const Text("Delete")),
                         cancel: OutlinedButton(
                             onPressed: () {
                               Get.back();
                             },
+                            style: btnSm,
                             child: const Text("Cancel")),
                       );
                     },

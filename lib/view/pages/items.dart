@@ -92,11 +92,13 @@ class Items extends StatelessWidget{
                                   txtEditController.text);
                               ItemsCtrl.uiUpdate();
                             },
+                            style: btnSm,
                             child: const Text("Update")),
                         cancel: OutlinedButton(
                             onPressed: () {
                               Get.back();
                             },
+                            style: btnSm,
                             child: const Text("Cancel")),
                       ); // end getX dialog box
                     },
@@ -116,7 +118,7 @@ class Items extends StatelessWidget{
                                   ItemsCtrl.controller.dataList[index].id);
                               ItemsCtrl.uiUpdate();
                             },
-                            style: btnSm,
+                            style: btnDanger,
                             child: const Text("Delete")),
                         cancel: OutlinedButton(
                             onPressed: () {

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:inventoryapp/presenters/controller/signup_controller.dart';
 import 'package:inventoryapp/view/pages/login.dart';
 import 'package:inventoryapp/view/widgets/button_style.dart';
+import 'package:inventoryapp/view/widgets/text_style.dart';
 
 import '../../presenters/controller/getx_controller.dart';
 
@@ -68,7 +69,7 @@ final controller = Get.put(ValController());
               child: TextFormField(controller: signupCtrl.pass2,
                 obscureText: true,
                 style: const TextStyle(height: 1),
-                decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Password"),
+                decoration: const InputDecoration(border: UnderlineInputBorder(),labelText: "Confirm Password"),
               ),
             ),
              SizedBox(height: Get.height*0.03,),
@@ -102,7 +103,9 @@ final controller = Get.put(ValController());
           signupCtrl.add();
         },
           style: btnMd,
-            child:  const Text("Signup",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+            child:   Text("Signup",
+              style: textSm,
+            ),
         );
       }
     });

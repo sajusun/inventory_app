@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inventoryapp/view/widgets/button_style.dart';
 import '../../presenters/controller/item_model_controller.dart';
 
 class ProductModel extends StatelessWidget {
@@ -92,11 +93,13 @@ class ProductModel extends StatelessWidget {
                                   txtEditController.text);
                               ModelCtrl.uiUpdate();
                             },
+                            style: btnSm,
                             child: const Text("Update")),
                         cancel: OutlinedButton(
                             onPressed: () {
                               Get.back();
                             },
+                            style: btnSm,
                             child: const Text("Cancel")),
                       ); // end getX dialog box
                     },
@@ -116,11 +119,13 @@ class ProductModel extends StatelessWidget {
                                   ModelCtrl.controller.dataList[index].id);
                               ModelCtrl.uiUpdate();
                             },
+                            style: btnDanger,
                             child: const Text("Delete")),
                         cancel: OutlinedButton(
                             onPressed: () {
                               Get.back();
                             },
+                            style: btnSm,
                             child: const Text("Cancel")),
                       );
                     },
