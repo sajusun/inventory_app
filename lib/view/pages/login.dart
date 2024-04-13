@@ -16,12 +16,12 @@ final LoginCtrl loginCtrl = LoginCtrl();
   Widget build(BuildContext context) {
 loginCtrl.controller.userAlert.value="";
     return Scaffold(
-      appBar: AppBar(title:  Text("Login",style: textMd,), centerTitle: true,),
+     // appBar: AppBar(title:  Text("Login",style: textMd,), centerTitle: true,),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding:  EdgeInsets.only(top: Get.height*.05),
+              padding:  EdgeInsets.only(top: Get.height*.1),
               child: Center(
                 child: SizedBox(
                     width: 160,
@@ -32,8 +32,9 @@ loginCtrl.controller.userAlert.value="";
                     child: Image.asset('lib/images/USER.png')),
               ),
             ),
+          Text("Sign In",style: textXlRed,),
 
-          SizedBox(height: Get.height*.08,),
+          SizedBox(height: Get.height*.06,),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextFormField(controller: loginCtrl.email,

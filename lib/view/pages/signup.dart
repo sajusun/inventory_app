@@ -19,12 +19,14 @@ final controller = Get.put(ValController());
     controller.userAlert.value="";
 
     return Scaffold(
-      appBar: AppBar(title:  Text("Signup",style: textMd,), centerTitle: true,),
+     appBar: AppBar(
+       title:  Text("Create Account",style: textSm,), centerTitle: true,
+     ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding:  EdgeInsets.only(top: Get.height*.02),
+              padding:  EdgeInsets.only(top: Get.height*.005),
               child: Center(
                 child: SizedBox(
                     width: Get.height*0.16,
@@ -32,8 +34,11 @@ final controller = Get.put(ValController());
                     /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('lib/images/applogo.jpeg')),
+                    child: Image.asset('lib/images/signup.png')),
               ),
+            ),
+            SizedBox(
+              height: Get.height*0.02,
             ),
             Padding(
               padding: const EdgeInsets.all(5.0),
